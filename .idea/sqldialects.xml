@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/app/Models/Collage.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/Models/Mobility.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/Models/Student.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/Models/Subject.php" dialect="GenericSQL" />
+  </component>
+</project>
