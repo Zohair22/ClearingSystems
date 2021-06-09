@@ -21,14 +21,6 @@ class SubjectRepository
         $this->subject = new Subject();
     }
 
-    public function all($id): array
-    {
-        $student = Student::findOrFail($id);
-        $ours = OurSubject::all();
-        $users = User::all();
-        return compact('student','ours','users');
-    }
-
     public function store(array $data, Request $request)
     {
         $code = $data['code'];

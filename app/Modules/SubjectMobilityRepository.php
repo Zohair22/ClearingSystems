@@ -7,10 +7,8 @@ namespace App\Modules;
 use App\Models\Confirmation;
 use App\Models\Mobility;
 use App\Models\Student;
-use App\Models\Subject;
 use App\Models\SubjectMobility;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class SubjectMobilityRepository
 {
@@ -23,7 +21,6 @@ class SubjectMobilityRepository
 
     public function store($data)
     {
-
         $data['stu_id'] = request('stu_id');
         $student = Student::findOrFail(request('stu_id'));
 
@@ -58,10 +55,9 @@ class SubjectMobilityRepository
             $insert['mobility_id'] = $id;
             SubjectMobility::create($insert);
         }
-
     }
 
-    public function show($id)
+    public function show($id): array
     {
         $student = Student::findOrFail($id);
         return compact('student');
@@ -102,7 +98,7 @@ class SubjectMobilityRepository
         }
     }
 
-    public function destroy(int $id)
+    public function destroy($id)
     {
         $mobility = Mobility::findOrFail($id);
         $mobility->delete();

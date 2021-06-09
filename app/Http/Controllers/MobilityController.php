@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 
 class MobilityController extends Controller
 {
-
     private MobilityRepository $mobilityRepository;
     public function __construct()
     {
@@ -29,36 +28,6 @@ class MobilityController extends Controller
         return view('doctor.all',$this->mobilityRepository->all($mobility));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return RedirectResponse
-     */
-    public function store(): RedirectResponse
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -94,14 +63,4 @@ class MobilityController extends Controller
         return back()->with('message','The Mobility Updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

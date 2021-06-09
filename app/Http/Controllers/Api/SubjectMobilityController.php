@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\SubjectMobilityResource;
 use App\Modules\SubjectMobilityRepository;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -22,9 +20,9 @@ class SubjectMobilityController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return RedirectResponse
+     * @return SubjectMobilityResource
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): SubjectMobilityResource
     {
         $data = $request->validate([
             'stu_id' => 'required',
@@ -48,46 +46,40 @@ class SubjectMobilityController extends Controller
             }) ,
         ]);
 
-        $this->subjectMobilityRepository->store($data);
-        return back()->with('message','Student mobility Added successfully');
+        return new SubjectMobilityResource($this->subjectMobilityRepository->store($data));
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
-     * @param  $id
-     * @return Application|Factory|View
+     * @param $id
+     * @return SubjectMobilityResource
      */
-    public function edit($id)
+    public function edit($id): SubjectMobilityResource
     {
-
-        return view('teacher.student.studentMobility',$this->subjectMobilityRepository->show($id));
+        return new SubjectMobilityResource($this->subjectMobilityRepository->show($id));
     }
-
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  $id
-     * @return RedirectResponse
+     * @param $id
+     * @return SubjectMobilityResource
      */
-    public function update($id ,Request $request): RedirectResponse
+    public function update(Request $request, $id): SubjectMobilityResource
     {
-        $this->subjectMobilityRepository->update($id,$request);
-        return back()->with('message','the Mobility Added successfully');
+        return new SubjectMobilityResource($this->subjectMobilityRepository->update($id,$request));
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return RedirectResponse
+     * @return SubjectMobilityResource
      */
-    public function destroy($id): RedirectResponse
+    public function destroy($id): SubjectMobilityResource
     {
-        $this->subjectMobilityRepository->destroy($id);
-        return back()->with('message','Deleted successfully');
+        return new SubjectMobilityResource($this->subjectMobilityRepository->destroy($id));
     }
 }

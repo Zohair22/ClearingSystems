@@ -23,7 +23,7 @@ class GradingSystemController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View|Response
+     * @return Application|Factory|View
      */
     public function index($id)
     {
@@ -31,19 +31,11 @@ class GradingSystemController extends Controller
         return view('teacher.mobility.gradingSystem',compact('collage'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
@@ -58,21 +50,11 @@ class GradingSystemController extends Controller
         return back()->with('message','The Grades Added successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param $id
      * @return Application|Factory|View
      */
     public function edit($id)
@@ -88,7 +70,7 @@ class GradingSystemController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function update(Request $request,$id)
+    public function update(Request $request,$id): RedirectResponse
     {
         $data = request()->validate([
             'grade' => ['required'],
@@ -101,15 +83,4 @@ class GradingSystemController extends Controller
         return redirect(route('gradingSystem',$uni_id))->with('message','The Grades Updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return RedirectResponse
-     */
-    public function destroy($id)
-    {
-        $this->gradingSystemRepository->destroy($id);
-        return back()->with('message','The Grades Deleted successfully');
-    }
 }

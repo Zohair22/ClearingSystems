@@ -68,8 +68,6 @@ Route::middleware('teacher')->group( function () {
 
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
 
-
-    Route::get('student/subjects/{id}', [SubjectController::class,'all'])->name('addSubjects');
-    Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubjectsss');
+    Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
 
 });

@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Modules\StudentRepository;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
@@ -20,12 +17,12 @@ class StudentController extends Controller
         $this->studentRepository = new StudentRepository();
     }
 
-    public function index(Student $student)
+    public function index(Student $student): StudentResource
     {
         return new StudentResource($this->studentRepository->all($student));
     }
 
-    public function store()
+    public function store(): StudentResource
     {
         $data = request()->validate([
             'name' => ['required', 'string', 'max:255', 'unique:students'],
@@ -39,7 +36,7 @@ class StudentController extends Controller
         return new StudentResource(redirect(route('addSubjects',$this->studentRepository->store($data))));
     }
 
-    public function edit($id)
+    public function edit($id): StudentResource
     {
         return new StudentResource($this->studentRepository->edit($id));
     }
@@ -58,7 +55,7 @@ class StudentController extends Controller
         return new StudentResource($this->studentRepository->update($id,$data));
     }
 
-    public function destroy($id)
+    public function destroy($id): StudentResource
     {
         return new StudentResource($this->studentRepository->destroy($id));
     }

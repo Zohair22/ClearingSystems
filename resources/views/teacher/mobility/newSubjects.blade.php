@@ -1,5 +1,5 @@
 
-<form method="POST" action="{{ route('addNewSubjectsss') }}" class="mb-0">
+<form method="POST" action="{{ route('addNewSubject') }}" class="mb-0">
     @csrf
     <div class="form-group row my-1">
         <label for="code" class="col-md-3 text-left col-form-label py-0">{{ __('Subject Code') }} </label>

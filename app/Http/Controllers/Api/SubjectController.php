@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\SubjectResource;
 use App\Modules\SubjectRepository;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -14,11 +15,14 @@ class SubjectController extends Controller
         $this->subjectRepository = new SubjectRepository;
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
+     * @return SubjectResource
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): SubjectResource
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -28,7 +32,6 @@ class SubjectController extends Controller
             'chr' => ['required', 'int'],
             'uni_id' => ['required', 'int'],
         ]);
-        $this->subjectRepository->store($data,$request);
-        return back()->with('message','Subject Added Successfully');
+        return new SubjectResource($this->subjectRepository->store($data,$request));
     }
 }

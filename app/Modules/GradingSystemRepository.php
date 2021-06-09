@@ -21,6 +21,7 @@ class GradingSystemRepository
         return Collage::findOrFail($id)->load('grades');
     }
 
+
     public function store($data,$request)
     {
         $grade = $data['grade'];
@@ -60,10 +61,12 @@ class GradingSystemRepository
         }
     }
 
+
     public function edit($id)
     {
         return GradeSystem::findOrFail($id);
     }
+
 
     public function update($id,$data,$request)
     {
@@ -87,6 +90,7 @@ class GradingSystemRepository
             return false;
         }
     }
+
 
     public function destroy(int $id)
     {
