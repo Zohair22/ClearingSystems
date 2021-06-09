@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AdminCollection;
 use App\Modules\AdminRepository;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AdminController extends Controller
@@ -35,5 +36,21 @@ class AdminController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         return new AdminCollection($this->adminRepository->store($data));
+    }
+
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'email'=> ['required','email'],
+            'password'=>['required'],
+        ]);
+
+        $this->adminRepository->login($data);
+
+        if ($this->adminRepository->login($data)){
+            return new AdminCollection(route('homeAdmin'));
+        }else{
+            return new AdminCollection(back()->with('message','something went wrong'));
+        }
     }
 }

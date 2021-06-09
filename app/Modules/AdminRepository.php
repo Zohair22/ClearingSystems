@@ -18,7 +18,6 @@ class AdminRepository
         $this->admin = new User();
     }
 
-
     public function all(): array
     {
         $collages = Collage::all();
@@ -32,6 +31,23 @@ class AdminRepository
     {
         $data['password'] = Hash::make(request('password'));
         return User::create($data);
+    }
+
+    public function login($data)
+    {
+        $admin = User::where('email', $data['email'])->first();
+
+
+        if (isset($admin)) {
+            if (Hash::check($data['password'], $admin->password)) {
+                auth('admin')->login($admin);
+                return redirect(route('home'));
+            } else {
+                return back()->with('message', 'something went wrong');
+            }
+        } else {
+            return back()->with('message', 'something went wrong');
+        }
     }
 
 }

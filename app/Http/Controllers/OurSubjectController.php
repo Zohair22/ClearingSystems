@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class OurSubjectController extends Controller
 {
-
     private OurSubjectRepository $ourSubjectRepository;
 
     public function __construct()

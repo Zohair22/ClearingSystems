@@ -24,6 +24,5 @@ class CollageController extends Controller
         ]);
 
         return new CollageResource($this->collageRepository->store($request,$data));
-//        return back()->with('message','Collage '.$collage->collage.' for '.$collage->uni_name.' University Added successfully');
     }
 }

@@ -3,83 +3,85 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OurSubjectResource;
+use App\Modules\OurSubjectRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class OurSubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private OurSubjectRepository $ourSubjectRepository;
+
+    public function __construct()
     {
-        //
+        $this->ourSubjectRepository =new OurSubjectRepository();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function all(): OurSubjectResource
     {
-        //
+        return new OurSubjectResource($this->ourSubjectRepository->all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return OurSubjectResource
      */
-    public function store(Request $request)
+    public function store(Request $request): OurSubjectResource
     {
-        //
-    }
+        $data = $request->validate([
+            'code' => ['required', 'int'],
+            'title' => ['required','string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'chr' => ['required'],
+            'description' => '',
+            'doctor' => ['int'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return new OurSubjectResource($this->ourSubjectRepository->store($data,$request));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return OurSubjectResource
      */
-    public function edit($id)
+    public function edit($id): OurSubjectResource
     {
-        //
+        return new OurSubjectResource($this->ourSubjectRepository->edit($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return OurSubjectResource
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): OurSubjectResource
     {
-        //
+        $data = $request->validate([
+            'code' => ['required', 'int'],
+            'title' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'chr' => '',
+            'description' => '',
+            'doctor' => ['int'],
+        ]);
+
+        return new OurSubjectResource($this->ourSubjectRepository->update($id,$data));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return OurSubjectResource
      */
-    public function destroy($id)
+    public function destroy($id): OurSubjectResource
     {
-        //
+        return new OurSubjectResource($this->ourSubjectRepository->destroy($id));
     }
 }
