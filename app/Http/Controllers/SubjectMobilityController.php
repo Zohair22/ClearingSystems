@@ -18,6 +18,11 @@ class SubjectMobilityController extends Controller
         $this->subjectMobilityRepository = new SubjectMobilityRepository();
     }
 
+    public function all($id)
+    {
+        return view('teacher.mobility.addStudentSubject', $this->subjectMobilityRepository->all($id));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -26,29 +31,7 @@ class SubjectMobilityController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $data = $request->validate([
-            'stu_id' => 'required',
-            'sub_id' => 'required',
-            'mobility_id' => '',
-            'ours_id' => 'required',
-            'doctor' => 'required',
-            'admin' => '',
-            'teacher' => 'required',
-            'confirm_id' => '',
-            'grade' => 'required',
-        ]);
-
-        $stu_id = $data['stu_id'];
-        $sub_id = $data['sub_id'];
-        $request->validate([
-            'sub_id'=> Rule::unique('subject_mobilities')->where(function ($query) use ($sub_id, $stu_id,$request) {
-                return $query
-                    ->where('sub_id',$sub_id)
-                    ->where('stu_id',$stu_id);
-            }) ,
-        ]);
-
-        $this->subjectMobilityRepository->store($data);
+        $this->subjectMobilityRepository->store($request);
         return back()->with('message','Student mobility Added successfully');
     }
 
@@ -64,7 +47,6 @@ class SubjectMobilityController extends Controller
         return view('teacher.student.studentMobility',$this->subjectMobilityRepository->show($id));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -77,7 +59,6 @@ class SubjectMobilityController extends Controller
         $this->subjectMobilityRepository->update($id,$request);
         return back()->with('message','the Mobility Added successfully');
     }
-
 
     /**
      * Remove the specified resource from storage.

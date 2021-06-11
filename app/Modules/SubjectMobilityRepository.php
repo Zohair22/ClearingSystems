@@ -6,9 +6,12 @@ namespace App\Modules;
 
 use App\Models\Confirmation;
 use App\Models\Mobility;
+use App\Models\OurSubject;
 use App\Models\Student;
 use App\Models\SubjectMobility;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SubjectMobilityRepository
 {
@@ -19,8 +22,37 @@ class SubjectMobilityRepository
         $this->subjectMobility = new SubjectMobility();
     }
 
-    public function store($data)
+    public function all($id): array
     {
+        $student = Student::findOrFail($id);
+        $ours = OurSubject::all();
+        $users = User::all();
+        return compact('student','ours','users');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'stu_id' => 'required',
+            'sub_id' => 'required',
+            'mobility_id' => '',
+            'ours_id' => 'required',
+            'doctor' => 'required',
+            'admin' => '',
+            'teacher' => 'required',
+            'confirm_id' => '',
+            'grade' => 'required',
+        ]);
+
+        $stu_id = $data['stu_id'];
+        $sub_id = $data['sub_id'];
+        $request->validate([
+            'sub_id'=> Rule::unique('subject_mobilities')->where(function ($query) use ($sub_id, $stu_id,$request) {
+                return $query
+                    ->where('sub_id',$sub_id)
+                    ->where('stu_id',$stu_id);
+            }) ,
+        ]);
         $data['stu_id'] = request('stu_id');
         $student = Student::findOrFail(request('stu_id'));
 
@@ -103,5 +135,6 @@ class SubjectMobilityRepository
         $mobility = Mobility::findOrFail($id);
         $mobility->delete();
     }
+
 
 }

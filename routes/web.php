@@ -61,11 +61,10 @@ Route::middleware('teacher')->group( function () {
     Route::patch('student/update/{id}', [StudentController::class,'update'])->name('updateStudent');
     Route::delete('student/delete/{id}', [StudentController::class,'destroy'])->name('removeStudent');
 
-    Route::get('student/mobility/{id}', [SubjectMobilityController::class,'show'])->name('studentMobility');
+    Route::get('collage/subject/{id}', [SubjectMobilityController::class,'all'])->name('addSubjects');
     Route::post('student/mobility/store', [SubjectMobilityController::class,'store'])->name('addStudentSubjects');
-
+    Route::get('student/mobility/{id}', [SubjectMobilityController::class,'edit'])->name('studentMobility');
     Route::post('student/addMobility/{id}', [SubjectMobilityController::class,'update'])->name('addStudentMobility');
-
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
 
     Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');

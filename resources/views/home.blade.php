@@ -3,11 +3,7 @@
 @section('content')
 
     @if(auth()->user()->group_by === '1')
-        <div class="container">
-            <div class="row justify-content-between">
-                @include('admin.index')
-            </div>
-        </div>
+        @include('admin.index')
     @endif
 
     @if(auth()->user()->group_by === '2')
@@ -15,11 +11,7 @@
     @endif
 
     @if(auth()->user()->group_by === '3')
-        <div class="container">
-            <div class="row justify-content-between">
-                @include('teacher.index')
-            </div>
-        </div>
+        @include('teacher.index')
     @endif
 
 @endsection

@@ -24,29 +24,7 @@ class SubjectMobilityController extends Controller
      */
     public function store(Request $request): SubjectMobilityResource
     {
-        $data = $request->validate([
-            'stu_id' => 'required',
-            'sub_id' => 'required',
-            'mobility_id' => '',
-            'ours_id' => 'required',
-            'doctor' => 'required',
-            'admin' => '',
-            'teacher' => 'required',
-            'confirm_id' => '',
-            'grade' => 'required',
-        ]);
-
-        $stu_id = $data['stu_id'];
-        $sub_id = $data['sub_id'];
-        $request->validate([
-            'sub_id'=> Rule::unique('subject_mobilities')->where(function ($query) use ($sub_id, $stu_id,$request) {
-                return $query
-                    ->where('sub_id',$sub_id)
-                    ->where('stu_id',$stu_id);
-            }) ,
-        ]);
-
-        return new SubjectMobilityResource($this->subjectMobilityRepository->store($data));
+        return new SubjectMobilityResource($this->subjectMobilityRepository->store($request));
     }
 
     /**

@@ -4,6 +4,7 @@
 namespace App\Modules;
 
 use App\Models\Collage;
+use App\Models\Confirmation;
 use App\Models\Mobility;
 use App\Models\OurSubject;
 use App\Models\User;
@@ -18,13 +19,21 @@ class AdminRepository
         $this->admin = new User();
     }
 
+    /**
+     * @return array
+     */
     public function all(): array
     {
         $collages = Collage::all();
-        $users = User::all();
         $mobilities = Mobility::with(['subjects','subjectMobilities'])->get();
-        $ourSubjects = OurSubject::all();
-        return compact('collages','users','mobilities','ourSubjects');
+        $confirmations = Confirmation::all();
+        if (auth()->user()->group_by == 2) {
+            return compact('mobilities');
+        }else if(auth()->user()->group_by == 3){
+            return compact('collages');
+        }else if(auth()->user()->group_by == 1){
+            return compact('confirmations');
+        }
     }
 
     public function store($data)

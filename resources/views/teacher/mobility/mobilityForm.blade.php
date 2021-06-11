@@ -9,10 +9,10 @@
 
         <div v-for="c in counters">
             <div class="form-group row my-1" >
-                <label for="sub_id" class="col-md-3 text-left col-form-label py-0 ">{{ __('Subject') }} </label>
+                <label for="sub_id" class="col-md-3 text-left col-form-label py-0 ">{{ __('Subject') }}  @{{ c }} </label>
                 <div class="col-md-9">
                     <select class="form-select form-control form-control-sm @error('sub_id') is-invalid @enderror" name="sub_id[]" required>
-                        <option class="disabled" disabled>Select Subject</option>
+                        <option class="disabled">Select Subject @{{ c }}</option>
                         @foreach($student->collages->subjects as $subject)
                             <option value="{{ $subject->id }}">{{ $subject->name }} =-----> @if($subject->title === 1)CS @else IS @endif {{ $subject->code }}</option>
                         @endforeach
@@ -51,7 +51,7 @@
             <label for="ours_id" class="col-md-3 text-left col-form-label py-0 ">{{ __('Our Subjects') }} </label>
             <div class="col-md-9">
                 <select class="form-select form-control form-control-sm @error('ours_id') is-invalid @enderror" name="ours_id" required>
-                    <option class="disabled" disabled>Select Subject</option>
+                    <option class="disabled">Select Subject</option>
                     @foreach($ours as $our)
                         <option value="{{ $our->id }}">{{ $our->name }} =-----> @if($our->title === 1)CS @else IS @endif {{ $our->code }}</option>
                     @endforeach
@@ -77,9 +77,9 @@
             <label for="doctor" class="col-md-3 text-left col-form-label py-0 ">{{ __('Doctor') }} </label>
             <div class="col-md-9">
                 <select class="form-select form-control form-control-sm @error('doctor') is-invalid @enderror" name="doctor" required>
-                    <option disabled>Select Doctor</option>
+                    <option class="disabled">Select Doctor</option>
                     @foreach($users as $user)
-                        @if($user->group_by == 2 || $user->group_by == 1)
+                        @if($user->group_by == 2)
                             <option value="{{ $user->id }}">{{ $user->username }}</option>
                         @endif
                     @endforeach

@@ -17,7 +17,6 @@ class MobilityController extends Controller
         $this->mobilityRepository = new MobilityRepository();
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +26,6 @@ class MobilityController extends Controller
     {
         return view('doctor.all',$this->mobilityRepository->all($mobility));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -43,7 +41,7 @@ class MobilityController extends Controller
         ]);
 
         $this->mobilityRepository->disapprove($id,$data);
-        return back()->with('message','The Mobility Updated successfully');
+        return back()->with('message','The Mobility DisApproved successfully');
     }
 
     /**
@@ -60,7 +58,7 @@ class MobilityController extends Controller
         ]);
 
         $this->mobilityRepository->approve($id,$data);
-        return back()->with('message','The Mobility Updated successfully');
+        return back()->with('message','The Mobility Approved successfully');
     }
 
 }
