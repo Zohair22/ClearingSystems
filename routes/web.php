@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\GradingSystemController;
 use App\Http\Controllers\MobilityController;
 use App\Http\Controllers\CollageController;
@@ -22,8 +23,10 @@ Route::middleware('admin')->group( function ()
 {
     Route::get('new/user', [AdminController::class,'create'])->name('addNewUserForm');
     Route::post('new/user/store', [AdminController::class,'store'])->name('addNewUser');
+    Route::patch('mobility/confirmation/{id}', [ConfirmationController::class, 'update'])->name('confirmation');
+    Route::get('student/{id}/subjectAccepted', [ConfirmationController::class, 'subjectAccepted'])->name('subjectAccepted');
+    Route::get('student/{id}/subjectRejected', [ConfirmationController::class, 'subjectRejected'])->name('subjectRejected');
 });
-
 
 
     //////// Doctor /////////
@@ -31,7 +34,6 @@ Route::middleware('doctor')->group( function () {
     Route::patch('student/subject/{id}/approve', [MobilityController::class, 'approve'])->name('approveMobility');
     Route::patch('student/subject/{id}/disapprove', [MobilityController::class, 'disapprove'])->name('disapproveMobility');
     Route::get('all/mobilities', [MobilityController::class, 'all'])->name('allMobilities');
-
 });
 
 
@@ -53,7 +55,6 @@ Route::middleware('teacher')->group( function () {
     Route::get('Grading/collage/grade/{id}', [GradingSystemController::class,'edit'])->name('editCollageGrade');
     Route::patch('Grading/collage/grade/{id}/update', [GradingSystemController::class,'update'])->name('updateCollageGrade');
 
-
 ///// Students
     Route::post('student/store', [StudentController::class,'store'])->name('addNewStudent');
     Route::get('students', [StudentController::class,'index'])->name('showStudent');
@@ -63,10 +64,13 @@ Route::middleware('teacher')->group( function () {
 
     Route::get('collage/subject/{id}', [SubjectMobilityController::class,'all'])->name('addSubjects');
     Route::post('student/mobility/store', [SubjectMobilityController::class,'store'])->name('addStudentSubjects');
-    Route::get('student/mobility/{id}', [SubjectMobilityController::class,'edit'])->name('studentMobility');
     Route::post('student/addMobility/{id}', [SubjectMobilityController::class,'update'])->name('addStudentMobility');
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
-
     Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
 
+});
+
+
+Route::middleware(['auth'])->group( function (){
+    Route::get('student/mobility/{id}', [SubjectMobilityController::class,'edit'])->name('studentMobility');
 });

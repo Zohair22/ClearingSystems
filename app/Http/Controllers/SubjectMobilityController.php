@@ -18,10 +18,12 @@ class SubjectMobilityController extends Controller
         $this->subjectMobilityRepository = new SubjectMobilityRepository();
     }
 
+
     public function all($id)
     {
         return view('teacher.mobility.addStudentSubject', $this->subjectMobilityRepository->all($id));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,6 +37,7 @@ class SubjectMobilityController extends Controller
         return back()->with('message','Student mobility Added successfully');
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -43,9 +46,9 @@ class SubjectMobilityController extends Controller
      */
     public function edit($id)
     {
-
         return view('teacher.student.studentMobility',$this->subjectMobilityRepository->show($id));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -59,6 +62,7 @@ class SubjectMobilityController extends Controller
         $this->subjectMobilityRepository->update($id,$request);
         return back()->with('message','the Mobility Added successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

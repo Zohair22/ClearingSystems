@@ -6,6 +6,7 @@ namespace App\Modules;
 
 use App\Models\Confirmation;
 use App\Models\Mobility;
+use App\Models\OurGrade;
 use App\Models\OurSubject;
 use App\Models\Student;
 use App\Models\SubjectMobility;
@@ -92,7 +93,8 @@ class SubjectMobilityRepository
     public function show($id): array
     {
         $student = Student::findOrFail($id);
-        return compact('student');
+        $ourGrades = OurGrade::all();
+        return compact('student','ourGrades');
     }
 
     public function update($id, Request $request)

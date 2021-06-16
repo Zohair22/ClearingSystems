@@ -31,7 +31,7 @@ class MobilityRepository
         return $mobility->update($data);
     }
 
-    public function all(Mobility $mobility)
+    public function all(Mobility $mobility): array
     {
         $mobilities = $mobility->orderBy('updated_at','DESC')->get();
         return compact('mobilities');
