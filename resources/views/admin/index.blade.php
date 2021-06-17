@@ -1,5 +1,4 @@
 
-
 @if(auth()->user()->group_by === '1')
     <div class="container">
         <div class="row justify-content-between">
@@ -14,7 +13,7 @@
     <div class="container-fluid">
         <h1 class="display-5 text-center">All Students</h1>
 
-        <table class="table table-striped table-bordered table-success mt-3 mx-auto">
+        <table class="table table-striped table-bordered border-2 border-success table-success mt-3 mx-auto">
             <thead>
             <tr class="font-weight-bold font-italic">
                 <th scope="col">#</th>
