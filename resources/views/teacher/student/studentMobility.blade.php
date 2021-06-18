@@ -45,18 +45,18 @@
         @elseif(auth()->user()->group_by === '1')
 
             @if($student->confirmation->confirmed != 1)
-            <form method="post" action="{{ route('confirmation', $student->confirmation->id) }}">
-                @csrf
-                @method('PATCH')
-                <input type="text" name="stu_id" hidden value="{{ $student->id }}">
-                <input type="text" name="admin" hidden value="{{ auth()->user()->id }}">
-                <button type="submit" class="btn btn-success"
-                        @foreach($student->confirmation->mobilities as $studentMobility)
-                        @if($studentMobility->acceptable === null) disabled @endif
-                    @break
-                    @endforeach
-                >@if($student->confirmation->confirmed === 1) Student Mobility Confirmed @else Confirm Student Mobility @endif</button>
-            </form>
+                <form method="post" action="{{ route('confirmation', $student->confirmation->id) }}">
+                    @csrf
+                    @method('PATCH')
+                    <input type="text" name="stu_id" hidden value="{{ $student->id }}">
+                    <input type="text" name="admin" hidden value="{{ auth()->user()->id }}">
+                    <button type="submit" class="btn btn-success"
+                            @foreach($student->confirmation->mobilities as $studentMobility)
+                            @if($studentMobility->acceptable === null) disabled @endif
+                        @break
+                        @endforeach
+                    >@if($student->confirmation->confirmed === 1) Student Mobility Confirmed @else Confirm Student Mobility @endif</button>
+                </form>
             @else
                 <a href="{{ route('subjectAccepted',$student->id) }}" class="btn btn-primary mr-5">Subject Accepted</a>
                 <a href="{{ route('subjectRejected',$student->id) }}" class="btn btn-info ml-5">Subject Rejected</a>
@@ -81,7 +81,7 @@
                 <th scope="col" class="align-middle">Our Grade</th>
                 <th scope="col" class="align-middle">Percentage</th>
                 <th scope="col" class="align-middle">Status</th>
-                    <th scope="col" class="align-middle">######</th>
+                <th scope="col" class="align-middle">######</th>
             </tr>
             </thead>
             <tbody>
@@ -161,10 +161,13 @@
                                 @if($loop->last)
                                     <div class="mt-5"></div>
                                 @endif
-
-                                @foreach($ourGrades as $ourGrade)
-                                    @if($ourGrade->grade === $subjectMobility->grade)
-                                        <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->grade }}</p>
+                                @foreach($student->collages->grades as $grade)
+                                    @if($subjectMobility->grade === $grade->grade)
+                                        @foreach($ourGrades as $ourGrade)
+                                            @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
+                                                <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->grade }}</p>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 @endforeach
 
@@ -181,9 +184,13 @@
                                     <div class="mt-5"></div>
                                 @endif
 
-                                @foreach($ourGrades as $ourGrade)
-                                    @if($ourGrade->grade === $subjectMobility->grade)
-                                        <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
+                                @foreach($student->collages->grades as $grade)
+                                    @if($subjectMobility->grade === $grade->grade)
+                                        @foreach($ourGrades as $ourGrade)
+                                            @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
+                                                    <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 @endforeach
 

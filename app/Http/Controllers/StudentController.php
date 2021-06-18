@@ -41,6 +41,8 @@ class StudentController extends Controller
             'name' => ['required', 'string', 'max:255', 'unique:students'],
             'nationality' => ['required', 'string', 'max:255'],
             'qualification' => ['required', 'string', 'max:255'],
+            'grade' => ['required', 'string', 'max:255'],
+            'percentage' => ['required', 'string', 'max:255'],
             'qualification_year' => ['required', 'string', 'max:255'],
             'level' => ['required', 'string', 'max:255'],
             'semester' => ['required', 'string', 'max:255'],

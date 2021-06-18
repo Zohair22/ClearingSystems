@@ -65,457 +65,67 @@
 
                         <input type="text" hidden name="uni_id" value="{{ $collage->id }}">
 
-                        <div class="form-row mt-2 col-12">
+                        <div v-for="c in count">
+                            <div class="form-row mt-2 col-12">
 
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]" value="A+" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
+                                <div class="form-group col d-inline-flex">
+                                    <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
+                                    <div class="col-md-9">
+                                        <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]" value="" required>
+                                        @error('grade')
+                                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromA*" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromA*" type="text" class="form-control from form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
+                                <div class="form-group col d-inline-flex">
+                                    <label for="fromA*" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
+                                    <div class="col-md-9">
+                                        <input id="fromA*" type="text" class="form-control from form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
+                                        @error('from')
+                                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col d-inline-flex">
-                                <label for="toA*" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toA*" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
+                                <div class="form-group col d-inline-flex">
+                                    <label for="toA*" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
+                                    <div class="col-md-9">
+                                        <input id="toA*" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
+                                        @error('to')
+                                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
                                 </div>
+
                             </div>
-
-                        </div>
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="A" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromA" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromA" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toA" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toA" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="A-" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromA-" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromA-" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toA-" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toA-" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="B+" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromB+" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromB+" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toB+" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toB+" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="B" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromB" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromB" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toB" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toB" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="B-" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromB-" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromB-" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toB-" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toB-" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="C+" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromC+" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromC+" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toC+" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toC+" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="C" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromC" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromC" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toC" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toC" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="C-" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromC-" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromC-" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toC-" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toC-" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]"  value="D+" required >
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromD+" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromD+" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toD+" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toD+" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" value="" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-row mt-2 col-12">
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="grade" type="text" class="form-control font-weight-bold text-center form-control-sm @error('grade') is-invalid @enderror" name="grade[]" value="D" required>
-                                    @error('grade')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="fromD" class="col-md-3 text-left col-form-label py-0 ">{{ __('From:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="fromD" type="text" class="form-control form-control-sm @error('from') is-invalid @enderror" name="from[]" value="" required>
-                                    @error('from')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group col d-inline-flex">
-                                <label for="toD" class="col-md-3 text-left col-form-label py-0 ">{{ __('To:') }}</label>
-                                <div class="col-md-9">
-                                    <input id="toD" type="text" class="form-control form-control-sm @error('to') is-invalid @enderror" name="to[]" required>
-                                    @error('to')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
                         </div>
 
                         <button type="submit" class="btn btn-primary ml-5">Add Grading System</button>
-
+                        <button type="button" class="btn font-weight-bold btn-success px-5 ml-5 " @click="incCounter">Add one</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section('script')
+    <script>
+        var app = new Vue({
+            el: '#formGrade',
+            data: {
+                count: 1,
+            },
+            methods: {
+                incCounter: function() {
+                    this.count += 1;
+                }
+            }
+        });
+    </script>
+@endsection

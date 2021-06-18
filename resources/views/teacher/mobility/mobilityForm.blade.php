@@ -77,7 +77,7 @@
             <label for="doctor" class="col-md-3 text-left col-form-label py-0 ">{{ __('Doctor') }} </label>
             <div class="col-md-9">
                 <select class="form-select form-control form-control-sm @error('doctor') is-invalid @enderror" name="doctor" required>
-                    <option class="disabled">Select Doctor</option>
+                    <option class="disabled" x-placement="Select Doctor">Select Doctor</option>
                     @foreach($users as $user)
                         @if($user->group_by == 2)
                             <option value="{{ $user->id }}">{{ $user->username }}</option>

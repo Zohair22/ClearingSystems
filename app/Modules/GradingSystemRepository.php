@@ -42,22 +42,21 @@ class GradingSystemRepository
 
         $insert = array();
 
-        foreach ($data['grade'] as  $key =>$grade)
-        {
-            $insert[$key]['grade'] = $grade;
-        }
-        foreach ($data['from'] as  $key =>$from)
-        {
-            $insert[$key]['from'] = $from;
-        }
-        foreach ($data['to'] as  $key =>$to)
-        {
-            $insert[$key]['to'] = $to;
-            $insert[$key]['uni_id'] = $data['uni_id'];
-        }
+        if (!empty($from)) {
+            foreach ($data['grade'] as $key => $grade) {
+                $insert[$key]['grade'] = $grade;
+            }
+            foreach ($data['from'] as $key => $from) {
+                $insert[$key]['from'] = $from;
+            }
+            foreach ($data['to'] as $key => $to) {
+                $insert[$key]['to'] = $to;
+                $insert[$key]['uni_id'] = $data['uni_id'];
+            }
 
-        foreach ($insert as $ins){
-            GradeSystem::create($ins);
+            foreach ($insert as $ins) {
+                GradeSystem::create($ins);
+            }
         }
     }
 

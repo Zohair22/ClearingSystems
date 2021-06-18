@@ -78,7 +78,7 @@
                             <select class="form-select form-control form-control-sm  @error('doctor') is-invalid @enderror" name="doctor" required>
                                 <option>Select Doctor</option>
                                 @foreach($users as $user)
-                                    @if($user->group_by != 3)
+                                    @if($user->group_by === '2')
                                         <option value="{{ $user->id }}">{{ $user->username }}</option>
                                     @endif
                                 @endforeach
