@@ -31,8 +31,6 @@ Route::middleware('admin')->group( function ()
 
     //////// Doctor /////////
 Route::middleware('doctor')->group( function () {
-    Route::patch('student/subject/{id}/approve', [MobilityController::class, 'approve'])->name('approveMobility');
-    Route::patch('student/subject/{id}/disapprove', [MobilityController::class, 'disapprove'])->name('disapproveMobility');
     Route::get('all/mobilities', [MobilityController::class, 'all'])->name('allMobilities');
 });
 
@@ -73,4 +71,6 @@ Route::middleware('teacher')->group( function () {
 
 Route::middleware(['auth'])->group( function (){
     Route::get('student/mobility/{id}', [SubjectMobilityController::class,'edit'])->name('studentMobility');
+    Route::patch('student/subject/{id}/approve', [MobilityController::class, 'approve'])->name('approveMobility');
+    Route::patch('student/subject/{id}/disapprove', [MobilityController::class, 'disapprove'])->name('disapproveMobility');
 });

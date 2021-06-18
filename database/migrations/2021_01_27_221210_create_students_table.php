@@ -17,8 +17,10 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('nationality');
+            $table->year('qualification_year');
             $table->string('qualification');
-            $table->date('qualification_year');
+            $table->string('grade');
+            $table->string('percentage');
             $table->string('level');
             $table->string('semester');
             $table->foreignId('uni_id')->constrained('collages')->cascadeOnDelete();

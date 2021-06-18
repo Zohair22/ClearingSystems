@@ -69,7 +69,7 @@
             <tr class="text-center">
                 <th colspan="4" class="align-middle">Student Subject</th>
                 <th colspan="4" class="align-middle">Collage Subject</th>
-                <th scope="col" class="align-middle">#####</th>
+                <th colspan="2" class="align-middle">Status</th>
             </tr>
             <tr class="text-center">
                 <th scope="col" class="align-middle">Subject Description</th>
@@ -81,9 +81,7 @@
                 <th scope="col" class="align-middle">Our Grade</th>
                 <th scope="col" class="align-middle">Percentage</th>
                 <th scope="col" class="align-middle">Status</th>
-                @if(auth()->user()->group_by === '3')
                     <th scope="col" class="align-middle">######</th>
-                @endif
             </tr>
             </thead>
             <tbody>
@@ -213,6 +211,39 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Remove Mobility</button>
                                 </form>
+                            </td>
+                        @elseif(auth()->user()->group_by === '1')
+                            <td class="align-middle p-2">
+                                <div>
+                                    @if($studentMobility->acceptable === null)
+                                        <div>
+                                            <form action="{{ route('approveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button class="btn btn-primary btn-sm text-md p-1">Approve</button>
+                                            </form>
+                                        </div>
+                                        <div class=" mt-5 ">
+                                            <form action="{{ route('disapproveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button class="btn btn-danger btn-sm text-md p-1">DisApprove</button>
+                                            </form>
+                                        </div>
+                                    @elseif($studentMobility->acceptable === 1)
+                                        <form action="{{ route('disapproveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button class="btn btn-danger btn-sm text-md p-1"  @if($student->confirmation->confirmed === 1) disabled @endif >DisApprove</button>
+                                        </form>
+                                    @elseif($studentMobility->acceptable === 0)
+                                        <form action="{{ route('approveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button class="btn btn-primary btn-sm text-md p-1"  @if($student->confirmation->confirmed === 1) disabled @endif >Approve</button>
+                                        </form>
+                                    @endif
+                                </div>
                             </td>
                         @endif
                     </tr>

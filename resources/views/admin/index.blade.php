@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-3">
-                <a href="{{route('addNewUserForm')}}" class="text-decoration-none text-lg-center text-xl">Add New User</a>
+                <a href="{{route('addNewUserForm')}}" class="btn btn-outline-primary text-lg-center px-5">Add New User</a>
             </div>
             <div class="col-9">
 
@@ -52,6 +52,13 @@
                     </th>
                 </tr>
             @endforeach
+            @if($confirmations->count() === 0)
+                <tr class="text-center">
+                    <th colspan="10" class="font-weight-light align-middle py-2">
+                        <p class="text-danger font-weight-bold p-3">Nothing to Show</p>
+                    </th>
+                </tr>
+            @endif
             </tbody>
         </table>
     </div>
