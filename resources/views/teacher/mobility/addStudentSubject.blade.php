@@ -45,6 +45,7 @@
                 <th scope="col" class="align-middle">Subject Name</th>
                 <th scope="col" class="align-middle">Credit Hour</th>
                 <th scope="col" class="align-middle">Subject Description</th>
+                <th scope="col" class="align-middle">#####</th>
             </tr>
             </thead>
             <tbody>
@@ -65,6 +66,20 @@
 
                         <td class="align-middle max-w-3xl">
                             <div class="text-left ml-4 space-x-2"><p class="text-justify">{{ $subject->description }}</p></div>
+                        </td>
+                        <td class="align-middle w-10">
+                            <div class="d-inline-flex">
+                                <div>
+                                    <a href="{{ route('editSubject',$subject->id) }}" class="btn text-md text-primary m-0 mr-1 p-0"><i class="far fa-edit"></i></a>
+                                </div>
+                                <div>
+                                    <form action="{{ route('deleteSubject',$subject->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn text-md text-danger m-0 p-0"><i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 

@@ -3,83 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Models\OurGrade;
+use App\Modules\GradingSystemRepository;
+use App\Modules\OurGradeRepository;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class OurGradeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    private OurGradeRepository $ourGradeRepository;
+
+    public function __construct(){
+        $this->ourGradeRepository = new OurGradeRepository();
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function index()
     {
-        //
+        return view('teacher.subject.ourGrade', $this->ourGradeRepository->index());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OurGrade  $ourGrade
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OurGrade $ourGrade)
-    {
-        //
+        $this->ourGradeRepository->store($request);
+        return back()->with('message','The Grades Added successfully');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OurGrade  $ourGrade
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return Application|Factory|View
      */
-    public function edit(OurGrade $ourGrade)
+    public function edit($id)
     {
-        //
+        $grade = $this->ourGradeRepository->edit($id);
+        return view('teacher.subject.updateOurGrade',compact('grade'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OurGrade  $ourGrade
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, OurGrade $ourGrade)
+    public function update(Request $request,$id): RedirectResponse
     {
-        //
+        $this->ourGradeRepository->update($id,$request);
+        return back()->with('message','The Grades Updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OurGrade  $ourGrade
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(OurGrade $ourGrade)
-    {
-        //
-    }
 }

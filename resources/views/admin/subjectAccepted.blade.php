@@ -30,14 +30,14 @@
                 <th colspan="4" class="align-middle">Collage Subject</th>
             </tr>
             <tr class="text-center">
-                <th scope="col" class="align-middle">Student Subject</th>
-                <th scope="col" class="align-middle">Credit Hour</th>
-                <th scope="col" class="align-middle">Grade</th>
-                <th scope="col" class="align-middle">Percentage</th>
-                <th scope="col" class="align-middle">Our subject</th>
-                <th scope="col" class="align-middle">Credit Hour</th>
-                <th scope="col" class="align-middle">Our Grade</th>
-                <th scope="col" class="align-middle">Percentage</th>
+                <th scope="col" class="align-middle py-3">Student Subject</th>
+                <th scope="col" class="align-middle py-3">Credit Hour</th>
+                <th scope="col" class="align-middle py-3">Grade</th>
+                <th scope="col" class="align-middle py-3">Percentage</th>
+                <th scope="col" class="align-middle py-3">Our subject</th>
+                <th scope="col" class="align-middle py-3">Credit Hour</th>
+                <th scope="col" class="align-middle py-3">Our Grade</th>
+                <th scope="col" class="align-middle py-3">Percentage</th>
             </tr>
             </thead>
             <tbody>
@@ -45,9 +45,9 @@
                 @foreach($student->confirmation->mobilities as $studentMobility)
                     @if($studentMobility->acceptable === 1)
                         <tr class="text-center">
-                            <td class="p-2 align-middle" style="width: 30rem">
+                            <td class="align-middle p-4" style="width: 30rem">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
-                                    <div class=" @if($loop->first) mb-3 @else mt-2 @endif">
+                                    <div class="">
                                         <div class="text-left font-weight-bold text-md">{{ $subjectMobility->subjects->name }} @if($subjectMobility->subjects->title === 1)CS @else IS @endif {{ $subjectMobility->subjects->code }}</div>
                                     </div>
                                     @if($loop->last)
@@ -57,101 +57,105 @@
                                 @endforeach
                             </td>
 
-                            <td class="p-2  align-middle">
+                            <td class=" align-middle">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
                                     @if($loop->last)
-                                        <div class="mt-5"></div>
+                                        <div></div>
                                     @endif
-                                    <p class="py-5 font-weight-bold text-lg">{{ $subjectMobility->subjects->chr }}</p>
+                                    <p class="font-weight-bold text-lg">{{ $subjectMobility->subjects->chr }}</p>
                                     @if($loop->last)
                                     @else
-                                        <hr class="mt-4">
+                                        <hr>
                                     @endif
                                 @endforeach
                             </td>
 
-                            <td class="p-2  align-middle">
+                            <td class=" align-middle">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
                                     @if($loop->last)
-                                        <div class="mt-5"></div>
+                                        <div></div>
                                     @endif
-                                    <p class="py-5 font-weight-bold text-lg">{{ $subjectMobility->grade }}</p>
+                                    <p class="font-weight-bold text-lg">{{ $subjectMobility->grade }}</p>
                                     @if($loop->last)
                                     @else
-                                        <hr class="mt-4">
+                                        <hr>
                                     @endif
                                 @endforeach
                             </td>
 
-                            <td class="p-2  align-middle">
+                            <td class=" align-middle">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
                                     @if($loop->last)
-                                        <div class="mt-5"></div>
+                                        <div></div>
                                     @endif
 
                                     @foreach($student->collages->grades as $grade)
                                         @if($grade->grade === $subjectMobility->grade)
-                                            <p class="py-5 font-weight-bold text-lg">{{ $grade->from }} - {{ $grade->to }}</p>
+                                            <p class="font-weight-bold text-lg">{{ $grade->from }} - {{ $grade->to }}</p>
                                         @endif
 
                                     @endforeach
 
                                     @if($loop->last)
                                     @else
-                                        <hr class="mt-4">
+                                        <hr>
                                     @endif
                                 @endforeach
                             </td>
 
-                            <td class="p-2 align-middle" style="width: 30rem">
+                            <td class="align-middle" style="width: 30rem">
                                 <div class="text-left font-weight-bold text-md">{{ $studentMobility->ours->name }} @if($studentMobility->ours->title === 1)CS @else IS @endif {{ $studentMobility->ours->code }}</div>
                             </td>
 
-                            <td class="p-2 align-middle">
-                                <p class="py-5 font-weight-bold text-lg">{{ $studentMobility->ours->chr }}</p>
+                            <td class="align-middle">
+                                <p class="font-weight-bold text-lg">{{ $studentMobility->ours->chr }}</p>
                             </td>
 
-                            <td class="p-2  align-middle">
+                            <td class=" align-middle">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
                                     @if($loop->last)
-                                        <div class="mt-5"></div>
+                                        <div></div>
                                     @endif
 
-                                    @foreach($ourGrades as $ourGrade)
-                                        @if($ourGrade->grade === $subjectMobility->grade)
-                                            <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->grade }}</p>
+                                    @foreach($student->collages->grades as $grade)
+                                        @if($subjectMobility->grade === $grade->grade)
+                                            @foreach($ourGrades as $ourGrade)
+                                                @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
+                                                    <p class="font-weight-bold text-lg">{{ $ourGrade->grade }}</p>
+                                                @endif
+                                            @endforeach
                                         @endif
                                     @endforeach
 
                                     @if($loop->last)
                                     @else
-                                        <hr class="mt-4">
+                                        <hr>
                                     @endif
                                 @endforeach
                             </td>
 
-                            <td class="p-2  align-middle">
+                            <td class=" align-middle">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
                                     @if($loop->last)
-                                        <div class="mt-5"></div>
+                                        <div></div>
                                     @endif
 
-                                    @foreach($ourGrades as $ourGrade)
-                                        @if($ourGrade->grade === $subjectMobility->grade)
-                                            <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
+                                    @foreach($student->collages->grades as $grade)
+                                        @if($subjectMobility->grade === $grade->grade)
+                                            @foreach($ourGrades as $ourGrade)
+                                                @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
+                                                    <p class="font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
+                                                @endif
+                                            @endforeach
                                         @endif
                                     @endforeach
 
                                     @if($loop->last)
                                     @else
-                                        <hr class="mt-4">
+                                        <hr>
                                     @endif
                                 @endforeach
                             </td>
-                        </tr>
-                    @else
-                        <tr class="text-center">
-                            <td colspan="9" class="p-5 font-weight-bold text-danger align-middle">No Subject has been Accepted</td>
                         </tr>
                     @endif
                 @endforeach

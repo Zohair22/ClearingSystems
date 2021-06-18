@@ -3,24 +3,27 @@
 
 namespace App\Modules;
 
+
 use App\Models\Collage;
 use App\Models\GradeSystem;
+use App\Models\OurGrade;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
-class GradingSystemRepository
+class OurGradeRepository
 {
-    private GradeSystem $gradeSystem;
+    private OurGrade $ourGrade;
 
     public function __construct()
     {
-        $this->gradeSystem = new GradeSystem();
+        $this->ourGrade = new OurGrade();
     }
 
-    public function index($id)
+    public function index(): array
     {
-        return Collage::findOrFail($id)->load('grades');
+        $grades = OurGrade::all();
+        return compact('grades');
     }
-
 
     public function store($request)
     {
@@ -28,20 +31,17 @@ class GradingSystemRepository
             'grade' => ['required'],
             'from' => ['required'],
             'to' => ['required'],
-            'uni_id' => ['required'],
         ]);
         $grade = $data['grade'];
         $from = $data['from'];
         $to = $data['to'];
-        $uni_id = $data['uni_id'];
 
         $request->validate([
-            'code'=> Rule::unique('grade_systems')->where(function ($query) use ($grade, $from, $to, $uni_id,$request) {
+            'code'=> Rule::unique('our_grades')->where(function ($query) use ($grade, $from, $to,$request) {
                 return $query
                     ->where('grade',$grade)
                     ->where('from',$from)
-                    ->where('to',$to)
-                    ->where('uni_id',$uni_id);
+                    ->where('to',$to);
             }) ,
 
         ]);
@@ -61,7 +61,7 @@ class GradingSystemRepository
             }
 
             foreach ($insert as $ins) {
-                GradeSystem::create($ins);
+                OurGrade::create($ins);
             }
         }
     }
@@ -69,7 +69,7 @@ class GradingSystemRepository
 
     public function edit($id)
     {
-        return GradeSystem::findOrFail($id);
+        return OurGrade::findOrFail($id);
     }
 
 
@@ -79,37 +79,28 @@ class GradingSystemRepository
             'grade' => ['required'],
             'from' => ['required'],
             'to' => ['required'],
-            'uni_id' => ['required'],
         ]);
-        $system = GradeSystem::findOrFail($id);
+        $system = OurGrade::findOrFail($id);
         $grade = $data['grade'];
         $from = $data['from'];
         $to = $data['to'];
-        $uni_id = $data['uni_id'];
 
         $request->validate([
-            'code'=> Rule::unique('grade_systems')->ignore($id)->where(function ($query) use ($grade, $from, $to, $uni_id,$request) {
+            'code'=> Rule::unique('our_grades')->ignore($id)->where(function ($query) use ($grade, $from, $to,$request) {
                 return $query
                     ->where('grade',$grade)
                     ->where('from',$from)
-                    ->where('to',$to)
-                    ->where('uni_id',$uni_id);
+                    ->where('to',$to);
             }) ,
 
         ]);
-
-        if ($system->update($data)){
-
-            return $uni_id;
-        }else {
-            return false;
-        }
+        $system->update($data);
     }
 
 
     public function destroy(int $id)
     {
-        $system = GradeSystem::findOrFail($id);
+        $system = OurGrade::findOrFail($id);
         return $system->delete();
     }
 

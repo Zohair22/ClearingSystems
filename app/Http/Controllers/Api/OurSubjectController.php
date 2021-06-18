@@ -30,16 +30,7 @@ class OurSubjectController extends Controller
      */
     public function store(Request $request): OurSubjectResource
     {
-        $data = $request->validate([
-            'code' => ['required', 'int'],
-            'title' => ['required','string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'chr' => ['required'],
-            'description' => '',
-            'doctor' => ['int'],
-        ]);
-
-        return new OurSubjectResource($this->ourSubjectRepository->store($data,$request));
+        return new OurSubjectResource($this->ourSubjectRepository->store($request));
     }
 
     /**

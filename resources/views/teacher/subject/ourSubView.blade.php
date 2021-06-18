@@ -2,9 +2,21 @@
 
 @section('content')
     <div class="container">
-        <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" data-toggle="modal" data-target="#subjectButton">
-            Add New Subject
-        </button>
+        <div class="row">
+            <div class="col-4">
+                <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold" data-toggle="modal" data-target="#subjectButton">
+                    Add New Subject
+                </button>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class=" float-right">
+                    <a href="{{ route('OurGrade')}}" class="btn btn-sm font-weight-bold btn-primary">
+                        Grading System
+                    </a>
+                </div>
+            </div>
+        </div>
         @include('teacher.subject.ourSubject')
 
         <div>
@@ -47,7 +59,7 @@
                                     <form action="{{ route('deleteOurSubject',$subject->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                    <button class="btn text-md text-danger m-0 p-0"><i class="far fa-trash-alt"></i></button>
+                                        <button class="btn text-md text-danger m-0 p-0"><i class="far fa-trash-alt"></i></button>
                                     </form>
                                 </div>
                             </div>

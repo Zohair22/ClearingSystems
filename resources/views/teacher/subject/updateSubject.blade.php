@@ -18,9 +18,11 @@
             <div class="card-body">
                 <div class="modal-body py-0" >
 
-                    <form action="{{ route('updateOurSubject',$subject->id) }}" method="POST">
+                    <form action="{{ route('updateSubject',$subject->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
+
+                        <input type="text" hidden name="uni_id" value="{{ $subject->uni_id }}">
 
                         <div class="form-group row my-2">
                             <label for="code" class="col-md-3 text-left col-form-label py-0">{{ __('Subject Code') }}</label>
@@ -76,29 +78,8 @@
                         <div class="form-group row my-2">
                             <label for="chr" class="col-md-3 text-left col-form-label py-0 ">{{ __('Credit Hour') }}</label>
                             <div class="col-md-9">
-                                <textarea class="form-control form-control-sm  @error('chr') is-invalid @enderror" name="chr">{{ $subject->chr }}</textarea>
+                                <input class="form-control form-control-sm  @error('chr') is-invalid @enderror" name="chr" value="{{ $subject->chr }}">
                                 @error('chr')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row my-2">
-                            <label for="doctor" class="col-md-3 text-left col-form-label py-0 ">{{ __('Subject Admin') }}</label>
-
-                            <div class="col-md-9">
-
-                                <select class="form-select form-control form-control-sm  @error('doctor') is-invalid @enderror" name="doctor" required>
-                                    <option>Select Doctor</option>
-                                    @foreach($users as $user)
-                                        @if($user->group_by != 3)
-                                            <option value="{{ $user->id }}" @if($user->id === $subject->doctor) selected @endif >{{ $user->username }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @error('doctor')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

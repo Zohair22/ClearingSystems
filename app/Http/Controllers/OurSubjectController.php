@@ -37,16 +37,7 @@ class OurSubjectController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $data = $request->validate([
-            'code' => ['required', 'int'],
-            'title' => ['required','string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'chr' => ['required'],
-            'description' => '',
-            'doctor' => ['int'],
-        ]);
-
-        $Sub = $this->ourSubjectRepository->store($data,$request);
+        $Sub = $this->ourSubjectRepository->store($request);
         return back()->with('message','The Subject '.$Sub->name.' Added successfully');
     }
 
@@ -71,16 +62,7 @@ class OurSubjectController extends Controller
      */
     public function update($id,Request $request): string
     {
-        $data = $request->validate([
-            'code' => ['required', 'int'],
-            'title' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'chr' => '',
-            'description' => '',
-            'doctor' => ['int'],
-        ]);
-
-        $this->ourSubjectRepository->update($id,$data);
+        $this->ourSubjectRepository->update($id,$request);
         return redirect()->route('showOurSubjects')->with('message','The Subject Updated successfully');
     }
 

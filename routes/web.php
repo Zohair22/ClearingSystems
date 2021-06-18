@@ -5,6 +5,7 @@ use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\GradingSystemController;
 use App\Http\Controllers\MobilityController;
 use App\Http\Controllers\CollageController;
+use App\Http\Controllers\OurGradeController;
 use App\Http\Controllers\OurSubjectController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectMobilityController;
@@ -45,6 +46,11 @@ Route::middleware('teacher')->group( function () {
     Route::patch('ourSubject/{id}/update', [OurSubjectController::class,'update'])->name('updateOurSubject');
     Route::delete('ourSubject/{id}/delete', [OurSubjectController::class,'destroy'])->name('deleteOurSubject');
 
+//    Subjects
+    Route::get('subject/{id}/edit/', [SubjectController::class,'edit'])->name('editSubject');
+    Route::patch('subject/{id}/update', [SubjectController::class,'update'])->name('updateSubject');
+    Route::delete('subject/{id}/delete', [SubjectController::class,'destroy'])->name('deleteSubject');
+
 
 //Collages
     Route::post('collage/store', [CollageController::class,'store'])->name('addNewCollage');
@@ -52,6 +58,12 @@ Route::middleware('teacher')->group( function () {
     Route::post('Grading/collage/store', [GradingSystemController::class,'store'])->name('addNewCollageGrade');
     Route::get('Grading/collage/grade/{id}', [GradingSystemController::class,'edit'])->name('editCollageGrade');
     Route::patch('Grading/collage/grade/{id}/update', [GradingSystemController::class,'update'])->name('updateCollageGrade');
+
+
+    Route::get('ourGrades/', [OurGradeController::class,'index'])->name('OurGrade');
+    Route::post('ourGrade/store', [OurGradeController::class,'store'])->name('addGrade');
+    Route::get('ourGrade/{id}', [OurGradeController::class,'edit'])->name('editGrade');
+    Route::patch('ourGrade/{id}/update', [OurGradeController::class,'update'])->name('updateGrade');
 
 ///// Students
     Route::post('student/store', [StudentController::class,'store'])->name('addNewStudent');

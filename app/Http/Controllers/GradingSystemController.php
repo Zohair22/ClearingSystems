@@ -40,13 +40,7 @@ class GradingSystemController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $data = $request->validate([
-            'grade' => ['required'],
-            'from' => ['required'],
-            'to' => ['required'],
-            'uni_id' => ['required'],
-        ]);
-        $this->gradingSystemRepository->store($data,$request);
+        $this->gradingSystemRepository->store($request);
         return back()->with('message','The Grades Added successfully');
     }
 
@@ -72,14 +66,7 @@ class GradingSystemController extends Controller
      */
     public function update(Request $request,$id): RedirectResponse
     {
-        $data = request()->validate([
-            'grade' => ['required'],
-            'from' => ['required'],
-            'to' => ['required'],
-            'uni_id' => ['required'],
-        ]);
-
-        $uni_id = $this->gradingSystemRepository->update($id,$data,$request);
+        $uni_id = $this->gradingSystemRepository->update($id,$request);
         return redirect(route('gradingSystem',$uni_id))->with('message','The Grades Updated successfully');
     }
 

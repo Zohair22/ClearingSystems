@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class OurGrade extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }
