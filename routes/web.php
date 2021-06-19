@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [AdminController::class, 'index'])->name('home');
+Route::post('/login/done', [AdminController::class, 'login'])->name('login');
 
 
     //////// Admin /////////
@@ -47,6 +48,7 @@ Route::middleware('teacher')->group( function () {
     Route::delete('ourSubject/{id}/delete', [OurSubjectController::class,'destroy'])->name('deleteOurSubject');
 
 //    Subjects
+    Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
     Route::get('subject/{id}/edit/', [SubjectController::class,'edit'])->name('editSubject');
     Route::patch('subject/{id}/update', [SubjectController::class,'update'])->name('updateSubject');
     Route::delete('subject/{id}/delete', [SubjectController::class,'destroy'])->name('deleteSubject');
@@ -54,16 +56,6 @@ Route::middleware('teacher')->group( function () {
 
 //Collages
     Route::post('collage/store', [CollageController::class,'store'])->name('addNewCollage');
-    Route::get('Grading/collage/{id}', [GradingSystemController::class,'index'])->name('gradingSystem');
-    Route::post('Grading/collage/store', [GradingSystemController::class,'store'])->name('addNewCollageGrade');
-    Route::get('Grading/collage/grade/{id}', [GradingSystemController::class,'edit'])->name('editCollageGrade');
-    Route::patch('Grading/collage/grade/{id}/update', [GradingSystemController::class,'update'])->name('updateCollageGrade');
-
-
-    Route::get('ourGrades/', [OurGradeController::class,'index'])->name('OurGrade');
-    Route::post('ourGrade/store', [OurGradeController::class,'store'])->name('addGrade');
-    Route::get('ourGrade/{id}', [OurGradeController::class,'edit'])->name('editGrade');
-    Route::patch('ourGrade/{id}/update', [OurGradeController::class,'update'])->name('updateGrade');
 
 ///// Students
     Route::post('student/store', [StudentController::class,'store'])->name('addNewStudent');
@@ -72,11 +64,21 @@ Route::middleware('teacher')->group( function () {
     Route::patch('student/update/{id}', [StudentController::class,'update'])->name('updateStudent');
     Route::delete('student/delete/{id}', [StudentController::class,'destroy'])->name('removeStudent');
 
+    Route::get('Grading/collage/{id}', [GradingSystemController::class,'index'])->name('gradingSystem');
+    Route::post('Grading/collage/store', [GradingSystemController::class,'store'])->name('addNewCollageGrade');
+    Route::get('Grading/collage/grade/{id}', [GradingSystemController::class,'edit'])->name('editCollageGrade');
+    Route::patch('Grading/collage/grade/{id}/update', [GradingSystemController::class,'update'])->name('updateCollageGrade');
+
+
+    Route::get('ourGrades/', [OurGradeController::class,'index'])->name('OurGrade');
+    Route::post('ourGrade/store', [OurGradeController::class,'store'])->name('addGrade');
+    Route::get('ourGrade/{id}/edit', [OurGradeController::class,'edit'])->name('editGrade');
+    Route::patch('ourGrade/{id}/update', [OurGradeController::class,'update'])->name('updateGrade');
+
     Route::get('collage/subject/{id}', [SubjectMobilityController::class,'all'])->name('addSubjects');
     Route::post('student/mobility/store', [SubjectMobilityController::class,'store'])->name('addStudentSubjects');
     Route::post('student/addMobility/{id}', [SubjectMobilityController::class,'update'])->name('addStudentMobility');
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
-    Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
 
 });
 

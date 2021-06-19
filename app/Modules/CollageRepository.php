@@ -11,13 +11,24 @@ class CollageRepository
 {
     private Collage $collage;
 
+    /**
+     * CollageRepository constructor.
+     */
     public function __construct()
     {
         $this->collage = new Collage();
     }
 
-    public function store($request,$data)
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function store($request)
     {
+        $data = request()->validate([
+            'uni_name' => ['required', 'string', 'max:255'],
+            'collage' => ['required', 'string', 'max:255'],
+        ]);
         $name = $data['uni_name'];
         $collageName = $data['collage'];
 

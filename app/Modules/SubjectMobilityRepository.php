@@ -86,7 +86,7 @@ class SubjectMobilityRepository
 
         foreach ($inserts as $insert){
             $insert['mobility_id'] = $id;
-            SubjectMobility::create($insert);
+           return SubjectMobility::create($insert);
         }
     }
 
@@ -124,7 +124,7 @@ class SubjectMobilityRepository
 
         foreach ($insert as $ins){
 
-            SubjectMobility::create([
+            return SubjectMobility::create([
                 'grade' => $ins['grade'],
                 'sub_id' => $ins['sub_id'],
                 'mobility_id' => $ins['mobility_id'],
@@ -135,7 +135,7 @@ class SubjectMobilityRepository
     public function destroy($id)
     {
         $mobility = Mobility::findOrFail($id);
-        $mobility->delete();
+        return $mobility->delete();
     }
 
 

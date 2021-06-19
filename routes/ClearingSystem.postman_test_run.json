@@ -1,0 +1,546 @@
+{
+	"id": "a573f542-0021-41d1-a290-526fcd89fb14",
+	"name": "ClearingSystem",
+	"timestamp": "2021-06-19T11:00:38.705Z",
+	"collection_id": "43d1b3b0-08ea-4215-843c-0f4fe9979513",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "b4c23aa0-59b2-4429-ae4b-b0be5a8e3130",
+			"name": "newCollage",
+			"url": "http://127.0.0.1:8000/api/collage/store",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "cc1bced2-8a27-4224-bcfe-cdcc5c1359d8",
+			"name": "allStudent",
+			"url": "http://127.0.0.1:8000/api/students",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				15
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "fbba72b5-87f0-41f0-a5c3-ce1526da404b",
+			"name": "newStudent",
+			"url": "http://127.0.0.1:8000/api/student/store",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4cae134d-b8be-4c9e-bca1-07182488cd23",
+			"name": "editStudent",
+			"url": "http://127.0.0.1:8000/api/student/edit/%7Bid%7D",
+			"time": 30,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				30
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e273491a-2a99-43f8-ba04-97ab16fe9b63",
+			"name": "updateStudent",
+			"url": "http://127.0.0.1:8000/api/student/update/%7Bid%7D",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0cc30ed4-8827-427d-a21d-6bfa51c24c3e",
+			"name": "deleteStudent",
+			"url": "http://127.0.0.1:8000/api/student/delete/%7B$id%7D",
+			"time": 37,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				37
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "cfb7efa8-f224-4d6c-85ac-54c9be651e3b",
+			"name": "allSubject",
+			"url": "http://127.0.0.1:8000/api/ourSubject/",
+			"time": 54,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				54
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "019abf16-3498-4dac-8569-a0ca4e41290a",
+			"name": "addSubject",
+			"url": "http://127.0.0.1:8000/api/ourSubject/store",
+			"time": 17,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "3b34add4-3fcc-4e12-8a74-d491ed418751",
+			"name": "editSubject",
+			"url": "http://127.0.0.1:8000/api/ourSubject/%7Bid%7D/edit/",
+			"time": 20,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a3d3af41-1a66-4cdc-8767-c00721ba1c99",
+			"name": "updateSubject",
+			"url": "http://127.0.0.1:8000/api/ourSubject/%7Bid%7D/update/",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f2d944a6-81af-45f8-a0d1-147c6a7e9ce3",
+			"name": "deleteSubject",
+			"url": "http://127.0.0.1:8000/api/ourSubject/%7Bid%7D/delete",
+			"time": 13,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7ac2148e-3123-47f0-bff0-382185804c3e",
+			"name": "grades",
+			"url": "http://127.0.0.1:8000/api/Grading/collage/%7Bid%7D",
+			"time": 13,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c5360c94-961a-491d-9d46-74c398a30c39",
+			"name": "NewGrades",
+			"url": "http://127.0.0.1:8000/api/Grading/collage/store",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "31e35814-70f1-45b4-9289-731c57646d4d",
+			"name": "editGrade",
+			"url": "http://127.0.0.1:8000/api/Grading/collage/grade/%7Bid%7D",
+			"time": 10,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6c117b7b-d22f-4a22-99cc-f583cbaacf70",
+			"name": "updateGrade",
+			"url": "http://127.0.0.1:8000/api/Grading/collage/grade/%7Bid%7D/update",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "130a78fb-81fc-4852-911d-032ec2f89ad2",
+			"name": "allMobility",
+			"url": "http://127.0.0.1:8000/api/all/mobilities",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				29
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "3c3eb610-e2f8-49a2-8380-d78de8c393ee",
+			"name": "approveMobility",
+			"url": "http://127.0.0.1:8000/api/student/subject/%7Bid%7D/approve",
+			"time": 24,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				24
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8b62d540-92e8-4aa0-9037-30e1f221d188",
+			"name": "dissapproveMobility",
+			"url": "http://127.0.0.1:8000/api/student/subject/%7Bid%7D/disapprove",
+			"time": 12,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "db929c4d-9210-48ab-b761-5ce300c097a6",
+			"name": "New Request",
+			"url": "http://127.0.0.1:8000/api/student/subjects/store",
+			"time": 19,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				19
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "53de9bfe-e8b3-4e88-9a01-f62e7792c47e",
+			"name": "addSubjectMobility",
+			"url": "http://127.0.0.1:8000/api/student/subjects/store",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b5be9761-7246-4935-b70d-0a78f7cfce02",
+			"name": "editSubjectMobility",
+			"url": "http://127.0.0.1:8000/api/student/mobility/%7Bid%7D",
+			"time": 13,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "9bc1a288-cb5c-4ae2-a72a-96e5d29b72b1",
+			"name": "updateSubjectMobility",
+			"url": "http://127.0.0.1:8000/api/student/addMobility/%7Bid%7D",
+			"time": 20,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "73c72755-814b-43f3-9a9d-df0f31bfd980",
+			"name": "deleteSubjectMobility",
+			"url": "http://127.0.0.1:8000/api/student/mobility/%7Bid%7D/delete",
+			"time": 32,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				32
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e9713eb8-1b56-4649-a56c-244c4205479c",
+			"name": "Home",
+			"url": "http://127.0.0.1:8000/api/",
+			"time": 29,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				29
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 465,
+	"collection": {
+		"requests": [
+			{
+				"id": "b4c23aa0-59b2-4429-ae4b-b0be5a8e3130",
+				"method": "POST"
+			},
+			{
+				"id": "cc1bced2-8a27-4224-bcfe-cdcc5c1359d8",
+				"method": "GET"
+			},
+			{
+				"id": "fbba72b5-87f0-41f0-a5c3-ce1526da404b",
+				"method": "POST"
+			},
+			{
+				"id": "4cae134d-b8be-4c9e-bca1-07182488cd23",
+				"method": "GET"
+			},
+			{
+				"id": "e273491a-2a99-43f8-ba04-97ab16fe9b63",
+				"method": "PATCH"
+			},
+			{
+				"id": "0cc30ed4-8827-427d-a21d-6bfa51c24c3e",
+				"method": "DELETE"
+			},
+			{
+				"id": "cfb7efa8-f224-4d6c-85ac-54c9be651e3b",
+				"method": "GET"
+			},
+			{
+				"id": "019abf16-3498-4dac-8569-a0ca4e41290a",
+				"method": "POST"
+			},
+			{
+				"id": "3b34add4-3fcc-4e12-8a74-d491ed418751",
+				"method": "GET"
+			},
+			{
+				"id": "a3d3af41-1a66-4cdc-8767-c00721ba1c99",
+				"method": "PATCH"
+			},
+			{
+				"id": "f2d944a6-81af-45f8-a0d1-147c6a7e9ce3",
+				"method": "DELETE"
+			},
+			{
+				"id": "7ac2148e-3123-47f0-bff0-382185804c3e",
+				"method": "GET"
+			},
+			{
+				"id": "c5360c94-961a-491d-9d46-74c398a30c39",
+				"method": "POST"
+			},
+			{
+				"id": "31e35814-70f1-45b4-9289-731c57646d4d",
+				"method": "GET"
+			},
+			{
+				"id": "6c117b7b-d22f-4a22-99cc-f583cbaacf70",
+				"method": "PATCH"
+			},
+			{
+				"id": "130a78fb-81fc-4852-911d-032ec2f89ad2",
+				"method": "GET"
+			},
+			{
+				"id": "3c3eb610-e2f8-49a2-8380-d78de8c393ee",
+				"method": "PATCH"
+			},
+			{
+				"id": "8b62d540-92e8-4aa0-9037-30e1f221d188",
+				"method": "PATCH"
+			},
+			{
+				"id": "db929c4d-9210-48ab-b761-5ce300c097a6",
+				"method": "POST"
+			},
+			{
+				"id": "53de9bfe-e8b3-4e88-9a01-f62e7792c47e",
+				"method": "POST"
+			},
+			{
+				"id": "b5be9761-7246-4935-b70d-0a78f7cfce02",
+				"method": "GET"
+			},
+			{
+				"id": "9bc1a288-cb5c-4ae2-a72a-96e5d29b72b1",
+				"method": "POST"
+			},
+			{
+				"id": "73c72755-814b-43f3-9a9d-df0f31bfd980",
+				"method": "DELETE"
+			},
+			{
+				"id": "e9713eb8-1b56-4649-a56c-244c4205479c",
+				"method": "GET"
+			}
+		]
+	}
+}

@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\ConfirmationController;
 use App\Http\Controllers\Api\CollageController;
+use App\Http\Controllers\Api\OurGradeController;
 use App\Http\Controllers\Api\GradingSystemController;
 use App\Http\Controllers\Api\MobilityController;
 use App\Http\Controllers\Api\OurSubjectController;
@@ -20,6 +22,10 @@ Route::post('/login/done', [AdminController::class, 'login'])->name('login');
 ////////// Admin /////////
 
 Route::post('new/user/store', [AdminController::class,'store'])->name('addNewUser');
+
+Route::patch('mobility/confirmation/{id}', [ConfirmationController::class, 'update'])->name('confirmation');
+Route::get('student/{id}/subjectAccepted', [ConfirmationController::class, 'subjectAccepted'])->name('subjectAccepted');
+Route::get('student/{id}/subjectRejected', [ConfirmationController::class, 'subjectRejected'])->name('subjectRejected');
 
 
 
@@ -42,7 +48,19 @@ Route::get('ourSubject/{id}/edit', [OurSubjectController::class,'edit'])->name('
 Route::patch('ourSubject/{id}/update', [OurSubjectController::class,'update'])->name('updateOurSubject');
 Route::delete('ourSubject/{id}/delete', [OurSubjectController::class,'destroy'])->name('deleteOurSubject');
 
+/////Subjects
+Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
+Route::get('subject/{id}/edit/', [SubjectController::class,'edit'])->name('editSubject');
+Route::patch('subject/{id}/update', [SubjectController::class,'update'])->name('updateSubject');
+Route::delete('subject/{id}/delete', [SubjectController::class,'destroy'])->name('deleteSubject');
+
 ////Collages
+/////// Students
+Route::post('student/store', [StudentController::class,'store'])->name('addNewStudent');
+Route::get('students', [StudentController::class,'index'])->name('showStudent');
+Route::get('student/edit/{id}', [StudentController::class,'edit'])->name('editStudent');
+Route::patch('student/update/{id}', [StudentController::class,'update'])->name('updateStudent');
+Route::delete('student/delete/{id}', [StudentController::class,'destroy'])->name('removeStudent');
 Route::post('collage/store', [CollageController::class,'store'])->name('addNewCollage');
 
 Route::get('Grading/collage/{id}', [GradingSystemController::class,'index'])->name('gradingSystem');
@@ -50,6 +68,10 @@ Route::post('Grading/collage/store', [GradingSystemController::class,'store'])->
 Route::get('Grading/collage/grade/{id}', [GradingSystemController::class,'edit'])->name('editCollageGrade');
 Route::patch('Grading/collage/grade/{id}/update', [GradingSystemController::class,'update'])->name('updateCollageGrade');
 
+Route::get('ourGrades/', [OurGradeController::class,'index'])->name('OurGrade');
+Route::post('ourGrade/store', [OurGradeController::class,'store'])->name('addGrade');
+Route::get('ourGrade/{id}/edit', [OurGradeController::class,'edit'])->name('editGrade');
+Route::patch('ourGrade/{id}/update', [OurGradeController::class,'update'])->name('updateGrade');
 
 /////// Students
 Route::post('student/store', [StudentController::class,'store'])->name('addNewStudent');
@@ -58,10 +80,12 @@ Route::get('student/edit/{id}', [StudentController::class,'edit'])->name('editSt
 Route::patch('student/update/{id}', [StudentController::class,'update'])->name('updateStudent');
 Route::delete('student/delete/{id}', [StudentController::class,'destroy'])->name('removeStudent');
 
-//Route::get('collage/subject/{id}', [SubjectMobilityController::class,'all'])->name('addSubjects');
+Route::get('collage/subject/{id}', [SubjectMobilityController::class,'all'])->name('addSubjects');
 Route::post('student/subjects/store', [SubjectMobilityController::class,'store'])->name('addStudentSubjects');
 Route::get('student/mobility/{id}', [SubjectMobilityController::class,'edit'])->name('studentMobility');
 Route::post('student/addMobility/{id}', [SubjectMobilityController::class,'update'])->name('addStudentMobility');
 Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
 
 Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
+
+

@@ -63,4 +63,5 @@ class SubjectController extends Controller
         return back()->with('message','Subject Deleted successfully');
 
     }
+
 }

@@ -66,12 +66,10 @@ class OurGradeRepository
         }
     }
 
-
     public function edit($id)
     {
         return OurGrade::findOrFail($id);
     }
-
 
     public function update($id,$request)
     {
@@ -96,7 +94,6 @@ class OurGradeRepository
         ]);
         $system->update($data);
     }
-
 
     public function destroy(int $id)
     {

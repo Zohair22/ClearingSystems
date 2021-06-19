@@ -36,18 +36,12 @@ class AdminController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @return RedirectResponse
      */
     public function store(): RedirectResponse
     {
-        $data = request()->validate([
-            'phone' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255'],
-            'group_by' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        $this->adminRepository->store($data);
+        $this->adminRepository->store();
         return back()->with('message', 'Added successfully');
     }
+
 }

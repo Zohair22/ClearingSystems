@@ -29,7 +29,6 @@ class StudentController extends Controller
         return view('teacher.student.students',$this->studentRepository->all($student));
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,21 +36,8 @@ class StudentController extends Controller
      */
     public function store()
     {
-        $data = request()->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:students'],
-            'nationality' => ['required', 'string', 'max:255'],
-            'qualification' => ['required', 'string', 'max:255'],
-            'grade' => ['required', 'string', 'max:255'],
-            'percentage' => ['required', 'string', 'max:255'],
-            'qualification_year' => ['required', 'string', 'max:255'],
-            'level' => ['required', 'string', 'max:255'],
-            'semester' => ['required', 'string', 'max:255'],
-            'uni_id' => ['required'],
-        ]);
-        return redirect(route('addSubjects',$this->studentRepository->store($data)));
+        return redirect(route('addSubjects',$this->studentRepository->store()));
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -72,16 +58,7 @@ class StudentController extends Controller
      */
     public function update($id): RedirectResponse
     {
-        $data = request()->validate([
-            'name' => ['required', 'string', 'max:255', Rule::unique('students')->ignore($id)],
-            'nationality' => ['required', 'string', 'max:255'],
-            'qualification' => ['required', 'string', 'max:255'],
-            'qualification_year' => ['required', 'string', 'max:255'],
-            'level' => ['required', 'string', 'max:255'],
-            'semester' => ['required', 'string', 'max:255'],
-            'uni_id' => ['required'],
-        ]);
-        $this->studentRepository->update($id,$data);
+        $this->studentRepository->update($id);
         return redirect(route('showStudent'))->with('message','The Student Information Updated successfully');
     }
 

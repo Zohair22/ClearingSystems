@@ -17,7 +17,7 @@ class OurSubjectRepository
         $this->ourSubject = new OurSubject();
     }
 
-    public function all()
+    public function all(): array
     {
         $subjects = OurSubject::all();
         $users = User::all();
@@ -50,7 +50,7 @@ class OurSubjectRepository
         return OurSubject::findOrFail($id);
     }
 
-    public function edit($id)
+    public function edit($id): array
     {
         $subject = OurSubject::findOrFail($id);
         $users = User::all();

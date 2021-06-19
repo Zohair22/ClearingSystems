@@ -53,16 +53,7 @@ class OurSubjectController extends Controller
      */
     public function update(Request $request, $id): OurSubjectResource
     {
-        $data = $request->validate([
-            'code' => ['required', 'int'],
-            'title' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'chr' => '',
-            'description' => '',
-            'doctor' => ['int'],
-        ]);
-
-        return new OurSubjectResource($this->ourSubjectRepository->update($id,$data));
+        return new OurSubjectResource($this->ourSubjectRepository->update($id,$request));
     }
 
     /**

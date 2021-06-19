@@ -16,13 +16,12 @@ class CollageController extends Controller
         $this->collageRepository = new CollageRepository();
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return CollageResource
+     */
+    public function store(Request $request): CollageResource
     {
-        $data = request()->validate([
-            'uni_name' => ['required', 'string', 'max:255'],
-            'collage' => ['required', 'string', 'max:255'],
-        ]);
-
-        return new CollageResource($this->collageRepository->store($request,$data));
+        return new CollageResource($this->collageRepository->store($request));
     }
 }

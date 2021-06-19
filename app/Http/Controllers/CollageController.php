@@ -22,12 +22,7 @@ class CollageController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $data = request()->validate([
-            'uni_name' => ['required', 'string', 'max:255'],
-            'collage' => ['required', 'string', 'max:255'],
-        ]);
-
-        $collage = $this->collageRepository->store($request,$data);
+        $collage = $this->collageRepository->store($request);
         return back()->with('message','Collage '.$collage->collage.' for '.$collage->uni_name.' University Added successfully');
     }
 }

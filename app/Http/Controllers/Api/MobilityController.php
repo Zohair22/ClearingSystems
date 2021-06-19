@@ -43,4 +43,5 @@ class MobilityController extends Controller
         ]);
         return new MobilityResource($this->mobilityRepository->approve($id,$data));
     }
+
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\SubjectMobilityResource;
 use App\Modules\SubjectMobilityRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Validation\Rule;
 
 class SubjectMobilityController extends Controller
@@ -14,6 +15,11 @@ class SubjectMobilityController extends Controller
     public function __construct()
     {
         $this->subjectMobilityRepository = new SubjectMobilityRepository();
+    }
+
+    public function all($id)
+    {
+        return new SubjectMobilityResource($this->subjectMobilityRepository->all($id));
     }
 
     /**

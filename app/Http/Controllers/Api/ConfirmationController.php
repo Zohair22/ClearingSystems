@@ -3,83 +3,57 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ConfirmationCollection;
+use App\Modules\ConfirmationRepository;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ConfirmationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    private ConfirmationRepository $confirmationRepository;
+
+    public function __construct(){
+        $this->confirmationRepository = new ConfirmationRepository();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return ConfirmationCollection
      */
-    public function update(Request $request, $id)
+    public function update($id): ConfirmationCollection
     {
-        //
+        return new ConfirmationCollection($this->confirmationRepository->update($id));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return ConfirmationCollection
      */
-    public function destroy($id)
+    public function subjectAccepted($id): ConfirmationCollection
     {
-        //
+        return new ConfirmationCollection($this->confirmationRepository->confirmed($id));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $id
+     * @return ConfirmationCollection
+     */
+    public function subjectRejected($id): ConfirmationCollection
+    {
+        return new ConfirmationCollection($this->confirmationRepository->confirmed($id));
+    }
+
+
+
 }

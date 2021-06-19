@@ -27,7 +27,6 @@ class GradingSystemController extends Controller
         return new GradingSystemResource($this->gradingSystemRepository->index($id));
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -44,7 +43,6 @@ class GradingSystemController extends Controller
         ]);
         return new GradingSystemResource($this->gradingSystemRepository->store($data,$request));
     }
-
 
     /**
      * Show the form for editing the specified resource.

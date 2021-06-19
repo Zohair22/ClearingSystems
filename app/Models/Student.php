@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,4 +24,10 @@ class Student extends Model
     {
         return $this->belongsTo(Collage::class, 'uni_id', 'id');
     }
+
+    public function subjectMobility(): HasMany
+    {
+        return $this->hasMany(SubjectMobility::class, 'sub_id', 'id');
+    }
+
 }

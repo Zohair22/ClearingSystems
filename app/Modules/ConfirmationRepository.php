@@ -28,7 +28,7 @@ class ConfirmationRepository
 
     public function confirmed($id): array
     {
-        $student = Student::findOrFail($id);
+        $student = Student::findOrFail($id)->mobilities();
         $ourGrades = OurGrade::all();
         return compact('student','ourGrades');
     }

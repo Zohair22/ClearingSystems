@@ -17,7 +17,7 @@ class AdminController extends Controller
         $this->adminRepository = new AdminRepository();
     }
 
-    public function index()
+    public function index(): AdminCollection
     {
         return new AdminCollection($this->adminRepository->all());
     }
@@ -26,31 +26,18 @@ class AdminController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store()
+    public function store(): AdminCollection
     {
-        $data = request()->validate([
-            'phone' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255'],
-            'group_by' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        return new AdminCollection($this->adminRepository->store($data));
+        return new AdminCollection($this->adminRepository->store());
     }
 
-    public function login(Request $request)
+    public function login(Request $request): AdminCollection
     {
-        $data = $request->validate([
-            'email'=> ['required','email'],
-            'password'=>['required'],
-        ]);
-
-        $this->adminRepository->login($data);
-
-        if ($this->adminRepository->login($data)){
-            return new AdminCollection(route('homeAdmin'));
+        if ($this->adminRepository->login($request)){
+            return new AdminCollection(route('home'));
         }else{
             return new AdminCollection(back()->with('message','something went wrong'));
         }
     }
+
 }

@@ -30,16 +30,8 @@ class Mobility extends Model
         return $this->belongsTo(Confirmation::class,'confirm_id','id');
     }
 
-
     public function ours(): BelongsTo
     {
         return $this->belongsTo(OurSubject::class,'ours_id','id');
     }
-
-
-    public function grades()
-    {
-        return $this->subjects()->withMobilities()->get();
-    }
-
 }

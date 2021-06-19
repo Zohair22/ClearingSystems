@@ -79,7 +79,7 @@ class SubjectRepository
     public function destroy($id)
     {
         $subject = Subject::findOrFail($id);
-        $subject->delete();
+        return $subject->delete();
     }
 
 }

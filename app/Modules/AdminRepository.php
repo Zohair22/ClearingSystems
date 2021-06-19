@@ -19,9 +19,6 @@ class AdminRepository
         $this->admin = new User();
     }
 
-    /**
-     * @return array
-     */
     public function all(): array
     {
         $collages = Collage::all();
@@ -36,16 +33,26 @@ class AdminRepository
         }
     }
 
-    public function store($data)
+    public function store()
     {
+        $data = request()->validate([
+            'phone' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
+            'group_by' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
         $data['password'] = Hash::make(request('password'));
         return User::create($data);
     }
 
-    public function login($data)
+    public function login($request)
     {
+        $data = $request->validate([
+            'email'=> ['required','email'],
+            'password'=>['required'],
+        ]);
         $admin = User::where('email', $data['email'])->first();
-
 
         if (isset($admin)) {
             if (Hash::check($data['password'], $admin->password)) {

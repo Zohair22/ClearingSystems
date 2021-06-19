@@ -15,7 +15,6 @@ class SubjectController extends Controller
         $this->subjectRepository = new SubjectRepository;
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -24,14 +23,41 @@ class SubjectController extends Controller
      */
     public function store(Request $request): SubjectResource
     {
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'code' => ['required', 'int'],
-            'title' => ['required', 'int'],
-            'description' => ['required'],
-            'chr' => ['required', 'int'],
-            'uni_id' => ['required', 'int'],
-        ]);
-        return new SubjectResource($this->subjectRepository->store($data,$request));
+        return new SubjectResource($this->subjectRepository->store($request));
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  $id
+     * @return SubjectResource
+     */
+    public function edit($id): SubjectResource
+    {
+        return new SubjectResource($this->subjectRepository->edit($id));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $id
+     * @param Request $request
+     * @return SubjectResource
+     */
+    public function update($id,Request $request): SubjectResource
+    {
+        return new SubjectResource($this->subjectRepository->update($id,$request));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  $id
+     * @return SubjectResource
+     */
+    public function destroy($id): SubjectResource
+    {
+        return new SubjectResource($this->subjectRepository->destroy($id));
+    }
+
 }
