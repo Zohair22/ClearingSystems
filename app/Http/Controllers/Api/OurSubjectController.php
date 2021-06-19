@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OurSubjectCollection;
 use App\Http\Resources\OurSubjectResource;
 use App\Modules\OurSubjectRepository;
 use Illuminate\Http\Request;
@@ -26,11 +27,11 @@ class OurSubjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return OurSubjectResource
+     * @return OurSubjectCollection
      */
-    public function store(Request $request): OurSubjectResource
+    public function store(Request $request): OurSubjectCollection
     {
-        return new OurSubjectResource($this->ourSubjectRepository->store($request));
+        return new OurSubjectCollection($this->ourSubjectRepository->store($request));
     }
 
     /**

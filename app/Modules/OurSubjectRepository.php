@@ -17,7 +17,7 @@ class OurSubjectRepository
         $this->ourSubject = new OurSubject();
     }
 
-    public function all(): array
+    public function all()
     {
         $subjects = OurSubject::all();
         $users = User::all();
@@ -47,10 +47,10 @@ class OurSubjectRepository
         ]);
 
         $id = OurSubject::create($data)->id;
-        return OurSubject::findOrFail($id);
+        OurSubject::findOrFail($id);
     }
 
-    public function edit($id): array
+    public function edit($id)
     {
         $subject = OurSubject::findOrFail($id);
         $users = User::all();
@@ -76,13 +76,13 @@ class OurSubjectRepository
             }) ,
         ]);
         $subject = OurSubject::findOrFail($id);
-        return $subject->update($data);
+        $subject->update($data);
     }
 
     public function destroy($id)
     {
         $subject = OurSubject::findOrFail($id);
-        $subject->delete();
+        return $subject->delete();
     }
 
 }

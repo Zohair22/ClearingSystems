@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [AdminController::class, 'index'])->name('home');
-Route::post('/login/done', [AdminController::class, 'login'])->name('login');
 
 
     //////// Admin /////////
@@ -79,6 +78,7 @@ Route::middleware('teacher')->group( function () {
     Route::post('student/mobility/store', [SubjectMobilityController::class,'store'])->name('addStudentSubjects');
     Route::post('student/addMobility/{id}', [SubjectMobilityController::class,'update'])->name('addStudentMobility');
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
+
 
 });
 

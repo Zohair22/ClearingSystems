@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SubjectMobilityCollection;
 use App\Http\Resources\SubjectMobilityResource;
 use App\Modules\SubjectMobilityRepository;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class SubjectMobilityController extends Controller
         $this->subjectMobilityRepository = new SubjectMobilityRepository();
     }
 
-    public function all($id)
+    public function all($id): SubjectMobilityCollection
     {
-        return new SubjectMobilityResource($this->subjectMobilityRepository->all($id));
+        return new SubjectMobilityCollection($this->subjectMobilityRepository->all($id));
     }
 
     /**
