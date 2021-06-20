@@ -9,7 +9,7 @@
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Student Qualification:</strong> {{ $student->qualification }}</h1>
                 <hr class="my-1">
-                <h1 class="display-7"><strong class="ml-3 mr-4">Student Degree:</strong> {{ $student->degree }}</h1>
+                <h1 class="display-7"><strong class="ml-3 mr-4">Student Degree:</strong> {{ $student->grade }}</h1>
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Student University:</strong> {{ $student->collages->uni_name }}</h1>
                 <hr class="my-1">
@@ -23,7 +23,7 @@
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Student Qualification Year:</strong> {{ $student->qualification_year }}</h1>
                 <hr class="my-1">
-                <h1 class="display-7"><strong class="ml-3 mr-4">Student Percentage:</strong> {{ $student->percentage }}</h1>
+                <h1 class="display-7"><strong class="ml-3 mr-4">Student Percentage:</strong> {{ $student->percentage }} %</h1>
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Mobilization to:</strong> MUST University</h1>
                 <hr class="my-1">

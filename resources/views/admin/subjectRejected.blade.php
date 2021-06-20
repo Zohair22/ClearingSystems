@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        <div>
+        <div class="ml-5">
             <h1 class="display-6 font-weight-bold">Misr University for Science and Technology</h1>
             <h1 class="display-6 font-weight-bold">Collage: IT</h1>
         </div>
-        <div class="text-lg w-70 ">
+        <div class="text-lg w-70 ml-5">
             <hr class="my-4">
             The committee decided after examining the detailed clearing of the student <strong>{{ $student->name }},</strong> who was transferred from the <strong>College {{ $student->collages->collage  }}</strong>
             <hr class="my-2">
@@ -22,7 +22,7 @@
             from the courses that the student has previously studied successfully in the entity from which he is transferred, and their data are as follows:-
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
         <table class="table table-bordered border-2 border-success table-striped table-success mt-3">
             <thead>
             <tr class="text-center">
@@ -45,10 +45,10 @@
                 @foreach($student->confirmation->mobilities as $studentMobility)
                     @if($studentMobility->acceptable === 0)
                         <tr class="text-center">
-                            <td class="align-middle p-4" style="width: 30rem">
+                            <td class="align-middle p-4">
                                 @foreach($studentMobility->subjectMobilities as $subjectMobility)
                                     <div class="">
-                                        <div class="text-left font-weight-bold text-md">{{ $subjectMobility->subjects->name }} @if($subjectMobility->subjects->title === 1)CS @else IS @endif {{ $subjectMobility->subjects->code }}</div>
+                                        <div class="font-weight-bold text-md">{{ $subjectMobility->subjects->name }} @if($subjectMobility->subjects->title === 1)CS @else IS @endif {{ $subjectMobility->subjects->code }}</div>
                                     </div>
                                     @if($loop->last)
                                     @else
@@ -103,8 +103,8 @@
                                 @endforeach
                             </td>
 
-                            <td class="align-middle" style="width: 30rem">
-                                <div class="text-left font-weight-bold text-md">{{ $studentMobility->ours->name }} @if($studentMobility->ours->title === 1)CS @else IS @endif {{ $studentMobility->ours->code }}</div>
+                            <td class="align-middle">
+                                <div class="font-weight-bold text-md">{{ $studentMobility->ours->name }} @if($studentMobility->ours->title === 1)CS @else IS @endif {{ $studentMobility->ours->code }}</div>
                             </td>
 
                             <td class="align-middle">
@@ -164,9 +164,9 @@
         </table>
     </div>
 
-    <div class="container row text-center mt-3 mb-40 p-2">
-        <div class="font-weight-bold text-lg col-4">Clearing committee </div>
-        <div class="font-weight-bold text-lg col-4">Dean of the College</div>
-        <div class="font-weight-bold text-lg col-4">University's president</div>
+    <div class="container row mt-3 mb-40 p-2">
+        <div class="font-weight-bold text-center text-lg col-4">Clearing committee </div>
+        <div class="font-weight-bold text-center text-lg col-4">Dean of the College</div>
+        <div class="font-weight-bold text-center text-lg col-4">University's president</div>
     </div>
 @endsection

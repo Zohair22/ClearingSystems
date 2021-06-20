@@ -86,7 +86,7 @@ class SubjectMobilityRepository
 
         foreach ($inserts as $insert){
             $insert['mobility_id'] = $id;
-           return SubjectMobility::create($insert);
+            SubjectMobility::create($insert);
         }
     }
 
@@ -123,8 +123,7 @@ class SubjectMobilityRepository
         }
 
         foreach ($insert as $ins){
-
-            return SubjectMobility::create([
+            SubjectMobility::create([
                 'grade' => $ins['grade'],
                 'sub_id' => $ins['sub_id'],
                 'mobility_id' => $ins['mobility_id'],
