@@ -38,7 +38,6 @@ Route::middleware('doctor')->group( function () {
 
     //////// Teacher /////////
 Route::middleware('teacher')->group( function () {
-
 /// //    OUR SUBJECTS
     Route::get('ourSubject', [OurSubjectController::class,'all'])->name('showOurSubjects');
     Route::post('ourSubject/store', [OurSubjectController::class,'store'])->name('addNewOurSubject');
