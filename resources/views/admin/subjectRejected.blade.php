@@ -145,6 +145,8 @@
                                             @foreach($ourGrades as $ourGrade)
                                                 @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
                                                     <p class="font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
+                                                @elseif($grade->from < 60)
+                                                    Failed
                                                 @endif
                                             @endforeach
                                         @endif

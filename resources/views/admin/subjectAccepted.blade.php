@@ -3,12 +3,12 @@
 @section('content')
     <div class="container">
         <div class="ml-5">
-            <h1 class="display-6 font-weight-bold">Misr University for Science and Technology</h1>
-            <h1 class="display-6 font-weight-bold">Collage: IT</h1>
+            <h1 class="display-6 font-weight-bold" style="font-family: 'Roboto Mono', monospace; ">Misr University for Science and Technology</h1>
+            <h1 class="display-6 font-weight-bold" style="font-family: 'Roboto Mono', monospace; ">Collage: Information Technology</h1>
         </div>
         <div class="text-lg w-70 ml-5">
             <hr class="my-4">
-            The committee decided after examining the detailed clearing of the student <strong>{{ $student->name }},</strong> who was transferred from the <strong>College {{ $student->collages->collage  }}</strong>
+            The committee decided after examining the detailed clearing of the student <strong style="font-family: 'Roboto Mono', monospace;">{{ $student->name }},</strong> who was transferred from the <strong style="font-family: 'Roboto Mono', monospace;">College {{ $student->collages->collage  }}</strong>
             <hr class="my-2">
             The equivalency of a total of
             <strong>
@@ -122,6 +122,8 @@
                                             @foreach($ourGrades as $ourGrade)
                                                 @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
                                                     <p class="font-weight-bold text-lg">{{ $ourGrade->grade }}</p>
+                                                @elseif($grade->from < 60)
+                                                    Failed
                                                 @endif
                                             @endforeach
                                         @endif
