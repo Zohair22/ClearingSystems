@@ -6,29 +6,34 @@
     <div class="container">
         <div class="mb-4">
             <h1 class="display-6"> <span class="font-weight-bold">University :</span> {{ $student->collages->uni_name }}</h1>
+            <hr class="w-75 my-2">
             <h1 class="display-6"> <span class="font-weight-bold">Collage :</span> {{ $student->collages->collage }}</h1>
+            <hr class="w-75 my-2">
             <h1 class="display-6"> <span class="font-weight-bold">Student :</span> {{ $student->name }}
-                <a href="{{ route('studentMobility',$student->id) }}" class="btn btn-sm btn-outline-info font-weight-bold ml-5">
+
+                <button type="button" class="btn btn-md font-weight-bold btn-primary ml-5 px-5 py-2" data-toggle="modal" data-target="#staticBackdrop">
+                    Add Mobility For Student
+                </button>
+
+                <a href="{{ route('studentMobility',$student->id) }}" class="btn btn-md btn-outline-info font-weight-bold ml-5 px-5 py-2">
                     All Mobility of this Student
                 </a>
             </h1>
+            <hr class="w-75 my-2">
         </div>
 
         <div class="row">
             <div class="col-3">
-                <button type="button" class="btn btn-sm font-weight-bold btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                    Add Mobility For Student
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-primary font-weight-bold mt-2" data-toggle="modal" data-target="#Subjects">
+                <button type="button" class="btn btn-md btn-outline-primary font-weight-bold mb-2  px-5" data-toggle="modal" data-target="#Subjects">
                     Add New Subject
                 </button>
             </div>
-            <div class="col-6">
-                <h1 class="display-5">All Subjects for this Collage</h1>
+            <div class="col-6 text-center">
+                <h1 class="display-6 font-weight-bold">All subjects of the Faculty of {{ $student->collages->collage }}</h1>
             </div>
             <div class="col-3">
                 <div class=" float-right">
-                    <a href="{{ route('gradingSystem',$student->uni_id) }}" class="btn btn-sm font-weight-bold btn-primary">
+                    <a href="{{ route('gradingSystem',$student->uni_id) }}" class="btn btn-md font-weight-bold btn-primary  px-5 py-2">
                         Grading System
                     </a>
                 </div>

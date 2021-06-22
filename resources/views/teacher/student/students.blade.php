@@ -8,15 +8,15 @@
         <table class="table border table-bordered table-striped table-success text-center">
             <thead>
             <tr class="font-weight-bold font-italic">
-                <th scope="col">Student Name</th>
-                <th scope="col">Student Nationality</th>
-                <th scope="col">Student Qualification</th>
-                <th scope="col">Qualification Year</th>
-                <th scope="col">Student Level</th>
-                <th scope="col">Student Semester</th>
-                <th scope="col">Student University</th>
-                <th scope="col">Student Collage</th>
-                <th scope="col">###</th>
+                <th class="align-middle" scope="col">Student Name</th>
+                <th class="align-middle" scope="col">Student Nationality</th>
+                <th class="align-middle" scope="col">Student Qualification</th>
+                <th class="align-middle" scope="col">Qualification Year</th>
+                <th class="align-middle" scope="col">Student Level</th>
+                <th class="align-middle" scope="col">Student Semester</th>
+                <th class="align-middle" scope="col">Student University</th>
+                <th class="align-middle" scope="col">Student Collage</th>
+                <th class="align-middle" scope="col">###</th>
             </tr>
             </thead>
             <tbody>

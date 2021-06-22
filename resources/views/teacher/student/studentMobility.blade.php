@@ -51,8 +51,8 @@
                     <input type="text" name="stu_id" hidden value="{{ $student->id }}">
                     <input type="text" name="admin" hidden value="{{ auth()->user()->id }}">
                     <button type="submit" class="btn btn-success"
-                            @foreach($student->confirmation->mobilities as $studentMobility)
-                            @if($studentMobility->acceptable === null) disabled @endif
+                            @foreach($student->confirmation->mobilities as $mobility)
+                            @if($mobility->acceptable === null) disabled @endif
                         @break
                         @endforeach
                     >@if($student->confirmation->confirmed === 1) Student Mobility Confirmed @else Confirm Student Mobility @endif</button>
@@ -86,10 +86,10 @@
             </thead>
             <tbody>
             @if($student->confirmation)
-                @foreach($student->confirmation->mobilities as $studentMobility)
+                @foreach($student->confirmation->mobilities as $mobility)
                     <tr class="text-center">
                         <td class="p-2 align-middle" style="width: 30rem">
-                            @foreach($studentMobility->subjectMobilities as $subjectMobility)
+                            @foreach($mobility->subjectMobilities as $subjectMobility)
                                 <div class=" @if($loop->first) mb-3 @else mt-2 @endif">
                                     <div class="text-left font-weight-bold text-md">{{ $subjectMobility->subjects->name }} @if($subjectMobility->subjects->title === 1)CS @else IS @endif {{ $subjectMobility->subjects->code }} :</div>
                                     <div class="text-left ml-4"><p class="text-justify">{{ $subjectMobility->subjects->description }}</p></div>
@@ -102,7 +102,7 @@
                         </td>
 
                         <td class="p-2  align-middle">
-                            @foreach($studentMobility->subjectMobilities as $subjectMobility)
+                            @foreach($mobility->subjectMobilities as $subjectMobility)
                                 @if($loop->last)
                                     <div class="mt-5"></div>
                                 @endif
@@ -115,7 +115,7 @@
                         </td>
 
                         <td class="p-2  align-middle">
-                            @foreach($studentMobility->subjectMobilities as $subjectMobility)
+                            @foreach($mobility->subjectMobilities as $subjectMobility)
                                 @if($loop->last)
                                     <div class="mt-5"></div>
                                 @endif
@@ -128,7 +128,7 @@
                         </td>
 
                         <td class="p-2  align-middle">
-                            @foreach($studentMobility->subjectMobilities as $subjectMobility)
+                            @foreach($mobility->subjectMobilities as $subjectMobility)
                                 @if($loop->last)
                                     <div class="mt-5"></div>
                                 @endif
@@ -148,16 +148,16 @@
                         </td>
 
                         <td class="p-2 align-middle" style="width: 30rem">
-                            <div class="text-left font-weight-bold text-md">{{ $studentMobility->ours->name }} @if($studentMobility->ours->title === 1)CS @else IS @endif {{ $studentMobility->ours->code }} :</div>
-                            <div class="text-left ml-4"><p class="text-justify">{{ $studentMobility->ours->description }}</p></div>
+                            <div class="text-left font-weight-bold text-md">{{ $mobility->ours->name }} @if($mobility->ours->title === 1)CS @else IS @endif {{ $mobility->ours->code }} :</div>
+                            <div class="text-left ml-4"><p class="text-justify">{{ $mobility->ours->description }}</p></div>
                         </td>
 
                         <td class="align-middle">
-                            <p class="py-5 font-weight-bold text-lg">{{ $studentMobility->ours->chr }}</p>
+                            <p class="py-5 font-weight-bold text-lg">{{ $mobility->ours->chr }}</p>
                         </td>
 
                         <td class="p-2  align-middle">
-                            @foreach($studentMobility->subjectMobilities as $subjectMobility)
+                            @foreach($mobility->subjectMobilities as $subjectMobility)
                                 @if($loop->last)
                                     <div class="mt-5"></div>
                                 @endif
@@ -179,7 +179,7 @@
                         </td>
 
                         <td class="p-2  align-middle">
-                            @foreach($studentMobility->subjectMobilities as $subjectMobility)
+                            @foreach($mobility->subjectMobilities as $subjectMobility)
                                 @if($loop->last)
                                     <div class="mt-5"></div>
                                 @endif
@@ -204,18 +204,18 @@
                         </td>
 
                         <td class="align-middle">
-                            @if($studentMobility->acceptable === null)
-                                <div class="text-secondary text-md font-weight-bold">In Progress<br><span class="text-xs">{{ $studentMobility->updated_at->diffForHumans() }}</span></div>
-                            @elseif($studentMobility->acceptable === 1)
-                                <div class="text-primary text-md font-weight-bold">Accepted<br><span class="text-xs">{{ $studentMobility->updated_at->diffForHumans() }}</span></div>
-                            @elseif($studentMobility->acceptable === 0)
-                                <div class="text-danger text-md font-weight-bold">Refused<br><span class="text-xs">{{ $studentMobility->updated_at->diffForHumans() }}</span></div>
+                            @if($mobility->acceptable === null)
+                                <div class="text-secondary text-md font-weight-bold">In Progress<br><span class="text-xs">{{ $mobility->updated_at->diffForHumans() }}</span></div>
+                            @elseif($mobility->acceptable === 1)
+                                <div class="text-primary text-md font-weight-bold">Accepted<br><span class="text-xs">{{ $mobility->updated_at->diffForHumans() }}</span></div>
+                            @elseif($mobility->acceptable === 0)
+                                <div class="text-danger text-md font-weight-bold">Refused<br><span class="text-xs">{{ $mobility->updated_at->diffForHumans() }}</span></div>
                             @endif
                         </td>
 
                         @if(auth()->user()->group_by === '3')
                             <td class="align-middle">
-                                <form action="{{ route('deleteStudentMobility',$studentMobility->id) }}" method="POST">
+                                <form action="{{ route('deleteStudentMobility',$mobility->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Remove Mobility</button>
@@ -224,29 +224,29 @@
                         @elseif(auth()->user()->group_by === '1')
                             <td class="align-middle p-2">
                                 <div>
-                                    @if($studentMobility->acceptable === null)
+                                    @if($mobility->acceptable === null)
                                         <div>
-                                            <form action="{{ route('approveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                            <form action="{{ route('approveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">
                                                 @csrf
                                                 @method('PATCH')
                                                 <button class="btn btn-primary btn-sm text-md p-1">Approve</button>
                                             </form>
                                         </div>
                                         <div class=" mt-5 ">
-                                            <form action="{{ route('disapproveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                            <form action="{{ route('disapproveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">
                                                 @csrf
                                                 @method('PATCH')
                                                 <button class="btn btn-danger btn-sm text-md p-1">DisApprove</button>
                                             </form>
                                         </div>
-                                    @elseif($studentMobility->acceptable === 1)
-                                        <form action="{{ route('disapproveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                    @elseif($mobility->acceptable === 1)
+                                        <form action="{{ route('disapproveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">
                                             @csrf
                                             @method('PATCH')
                                             <button class="btn btn-danger btn-sm text-md p-1"  @if($student->confirmation->confirmed === 1) disabled @endif >DisApprove</button>
                                         </form>
-                                    @elseif($studentMobility->acceptable === 0)
-                                        <form action="{{ route('approveMobility',$studentMobility->id) }}" class="d-inline m-0 p-0" method="post">
+                                    @elseif($mobility->acceptable === 0)
+                                        <form action="{{ route('approveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">
                                             @csrf
                                             @method('PATCH')
                                             <button class="btn btn-primary btn-sm text-md p-1"  @if($student->confirmation->confirmed === 1) disabled @endif >Approve</button>

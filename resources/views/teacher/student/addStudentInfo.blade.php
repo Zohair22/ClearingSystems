@@ -142,7 +142,7 @@
     <div class="form-group row mt-3 mb-0">
         <div class="col-md-7 offset-md-1">
             <button type="submit" class="btn btn-primary p-1 px-3 rounded-lg">
-                {{ __('Add New') }}
+                {{ __('Add New Student') }}
             </button>
         </div>
     </div>
