@@ -30,4 +30,11 @@ class Student extends Model
         return $this->hasMany(SubjectMobility::class, 'sub_id', 'id');
     }
 
+    public function hours()
+    {
+        $mobilities =  Mobility::where('acceptable',1)->get();
+        return $mobilities->count() * 3;
+
+    }
+
 }

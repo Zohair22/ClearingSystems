@@ -23,7 +23,7 @@
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Student Qualification Year:</strong> {{ $student->qualification_year }}</h1>
                 <hr class="my-1">
-                <h1 class="display-7"><strong class="ml-3 mr-4">Student Percentage:</strong> {{ $student->percentage }} %</h1>
+                <h1 class="display-7"><strong class="ml-3 mr-4">Student Percentage:</strong> {{ $student->percentage }}%</h1>
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Mobilization to:</strong> MUST University</h1>
                 <hr class="my-1">
@@ -166,6 +166,9 @@
                                         @foreach($ourGrades as $ourGrade)
                                             @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
                                                 <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->grade }}</p>
+                                            @elseif($grade->from < 60)
+                                                    <p class="py-5 font-weight-bold text-lg text-danger">F</p>
+                                                @break
                                             @endif
                                         @endforeach
                                     @endif
@@ -190,7 +193,8 @@
                                             @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
                                                 <p class="py-5 font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
                                             @elseif($grade->from < 60)
-                                                Failed
+                                                    <p class="py-5 font-weight-bold text-lg text-danger">Failed</p>
+                                                @break
                                             @endif
                                         @endforeach
                                     @endif

@@ -22,4 +22,9 @@ class SubjectMobility extends Model
         return $this->belongsTo(Subject::class,'sub_id','id');
     }
 
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class,'stu_id','id');
+    }
+
 }

@@ -6,6 +6,7 @@ namespace App\Modules;
 use App\Models\Collage;
 use App\Models\Confirmation;
 use App\Models\Mobility;
+use App\Models\OurGrade;
 use App\Models\OurSubject;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -23,9 +24,10 @@ class AdminRepository
     {
         $collages = Collage::all();
         $mobilities = Mobility::with(['subjects','subjectMobilities'])->get();
-        $confirmations = Confirmation::all();
+        $confirmations = Confirmation::latest()->get();
+        $ourGrades = OurGrade::all();
         if (auth()->user()->group_by == 2) {
-            return compact('mobilities');
+            return compact('mobilities','ourGrades');
         }else if(auth()->user()->group_by == 3){
             return compact('collages');
         }else if(auth()->user()->group_by == 1){
