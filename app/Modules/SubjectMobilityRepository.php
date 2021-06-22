@@ -29,6 +29,10 @@ class SubjectMobilityRepository
         $this->subjectMobility = new SubjectMobility();
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function all($id): array
     {
         $student = Student::findOrFail($id);
@@ -37,6 +41,9 @@ class SubjectMobilityRepository
         return compact('student','ours','users');
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -83,6 +90,7 @@ class SubjectMobilityRepository
                 'stu_id'=>$data['stu_id']
             ])->id;
         }
+
         $id = Mobility::create([
             'ours_id'=>$data['ours_id'],
             'confirm_id'=>$confirm_id,
@@ -90,12 +98,17 @@ class SubjectMobilityRepository
             'doctor'=>$data['doctor'],
         ])->id;
 
-        foreach ($inserts as $insert){
+        foreach ($inserts as $insert)
+        {
             $insert['mobility_id'] = $id;
             SubjectMobility::create($insert);
         }
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function show($id): array
     {
         $student = Student::findOrFail($id);
@@ -103,6 +116,10 @@ class SubjectMobilityRepository
         return compact('student','ourGrades');
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     */
     public function update($id, Request $request)
     {
         $data = $request->all();
@@ -137,6 +154,10 @@ class SubjectMobilityRepository
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function destroy($id)
     {
         $mobility = Mobility::findOrFail($id);
