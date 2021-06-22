@@ -30,9 +30,9 @@ class Student extends Model
         return $this->hasMany(SubjectMobility::class, 'sub_id', 'id');
     }
 
-    public function hours()
+    public function hours($confirm_id)
     {
-        $mobilities =  Mobility::where('acceptable',1)->get();
+        $mobilities =  Mobility::where('acceptable',1)->where('confirm_id',$confirm_id)->get();
         return $mobilities->count() * 3;
 
     }

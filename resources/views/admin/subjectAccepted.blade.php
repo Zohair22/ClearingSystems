@@ -12,7 +12,7 @@
             <hr class="my-2">
             The equivalency of a total of
             <strong>
-                {{ $student->hours() }}
+                {{ $student->hours($student->confirmation->id) }}
                 credit hours
             </strong>
             from the courses that the student has previously studied successfully in the entity from which he is transferred, and their data are as follows:-
@@ -144,9 +144,9 @@
                                             @foreach($ourGrades as $ourGrade)
                                                 @if(in_array($grade->from, range($ourGrade->from,$ourGrade->to),true))
                                                     <p class="font-weight-bold text-lg">{{ $ourGrade->from }} - {{ $ourGrade->to }}</p>
-                                                    @elseif($grade->from < 60)
-                                                        <p class="font-weight-bold text-lg">Failed</p>
-                                                        @break
+                                                @elseif($grade->from < 60)
+                                                    <p class="font-weight-bold text-lg">Failed</p>
+                                                    @break
                                                 @endif
                                             @endforeach
                                         @endif

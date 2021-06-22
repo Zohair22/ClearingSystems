@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="display-5 text-center">Grading System</h1>
+        <h1 class="display-5 text-center">MUST Grading System</h1>
         <div class="mt-3 text-center">
             <button type="button" class="btn btn-primary ml-4" data-toggle="modal" data-target="#exampleModal">
                 Add Grading system

@@ -56,12 +56,43 @@
                             </div>
                         </div>
 
+                        <div class="form-group row my-2">
+                            <label for="grade" class="col-md-3 text-left col-form-label py-0 ">{{ __('Grade') }}</label>
+                            <div class="col-md-9">
+                                <input id="grade" type="text" class="form-control form-control-sm @error('grade') is-invalid @enderror" name="grade" value='{{ $student->grade }}' required>
+                                @error('grade')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row my-2">
+                            <label for="percentage" class="col-md-3 text-left col-form-label py-0 ">{{ __('Percentage') }}</label>
+                            <div class="col-md-9">
+                                <input id="percentage" type="text" class="form-control form-control-sm @error('percentage') is-invalid @enderror" name="percentage" value='{{ $student->percentage }}' required>
+                                @error('percentage')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
 
                         <div class="form-group row my-2">
                             <label for="qualification_year" class="col-md-3 text-left col-form-label py-0 ">{{ __('Qualification Year') }}</label>
                             <div class="col-md-9">
-                                <input id="qualification_year" type="date" class="form-control form-control-sm @error('qualification_year') is-invalid @enderror" name="qualification_year" required value='{{ $student->qualification_year }}'>
+                                <select class="form-select form-control form-control-sm @error('qualification_year') is-invalid @enderror" name="qualification_year" id="qualification_year" required>
+                                    <option selected>Open this select menu</option>
+                                    @foreach(range(2010,strftime("%Y", time())) as $year)
+                                        <option @if($student->qualification_year === $year) SELECTED @endif value="{{ $year }}">{{ $year }}</option>
+                                    @endforeach
+                                </select>
                                 @error('qualification_year')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -75,7 +106,7 @@
                         <div class="form-group row my-2">
                             <label for="level" class="col-md-3 text-left col-form-label py-0 ">{{ __('Level') }}</label>
                             <div class="col-md-9">
-                                <input id="level" type="text" class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" required value='{{ $student->level }}'>
+                                <input id="level" type="text" class="form-control form-control-sm @error('level') is-invalid @enderror" name="level" value="{{ $student->level }}" required>
                                 @error('level')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
