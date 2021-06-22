@@ -16,8 +16,14 @@ use Illuminate\Validation\Rule;
 
 class SubjectMobilityRepository
 {
+    /**
+     * @var SubjectMobility
+     */
     private SubjectMobility $subjectMobility;
 
+    /**
+     * SubjectMobilityRepository constructor.
+     */
     public function __construct()
     {
         $this->subjectMobility = new SubjectMobility();
