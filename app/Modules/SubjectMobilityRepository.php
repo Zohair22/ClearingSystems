@@ -9,6 +9,7 @@ use App\Models\Mobility;
 use App\Models\OurGrade;
 use App\Models\OurSubject;
 use App\Models\Student;
+use App\Models\Subject;
 use App\Models\SubjectMobility;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -91,12 +92,30 @@ class SubjectMobilityRepository
             ])->id;
         }
 
-        $id = Mobility::create([
-            'ours_id'=>$data['ours_id'],
-            'confirm_id'=>$confirm_id,
-            'teacher'=>$data['teacher'],
-            'doctor'=>$data['doctor'],
-        ])->id;
+        if (SubjectMobility::where('sub_id',$data['sub_id'])->get()->count() >= 1)
+        {
+            $subMobs = SubjectMobility::where('sub_id',$data['sub_id'])->get();
+            foreach ($subMobs as $subMob){
+                $Mob = Mobility::find($subMob->mobility_id);
+                $id = Mobility::create([
+                    'ours_id'=>$data['ours_id'],
+                    'confirm_id'=>$confirm_id,
+                    'acceptable'=>$Mob->acceptable,
+                    'admin'=>$Mob->admin,
+                    'reason'=>$Mob->reason,
+                    'teacher'=>$data['teacher'],
+                    'doctor'=>$data['doctor'],
+                ])->id;
+                break;
+            }
+        }else{
+            $id = Mobility::create([
+                'ours_id'=>$data['ours_id'],
+                'confirm_id'=>$confirm_id,
+                'teacher'=>$data['teacher'],
+                'doctor'=>$data['doctor'],
+            ])->id;
+        }
 
         foreach ($inserts as $insert)
         {
