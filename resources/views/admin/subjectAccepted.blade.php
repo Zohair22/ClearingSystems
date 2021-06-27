@@ -58,7 +58,7 @@
                                     @if($loop->last)
                                         <div></div>
                                     @endif
-                                    <p class="font-weight-bold text-lg">{{ $subjectMobility->subjects->chr }}</p>
+                                        <p class="font-weight-bold text-lg">{{ $subjectMobility->subjects->chr }}</p>
                                     @if($loop->last)
                                     @else
                                         <hr>
@@ -84,14 +84,11 @@
                                     @if($loop->last)
                                         <div></div>
                                     @endif
-
                                     @foreach($student->collages->grades as $grade)
                                         @if($grade->grade === $subjectMobility->grade)
                                             <p class="font-weight-bold text-lg">{{ $grade->from }} - {{ $grade->to }}</p>
                                         @endif
-
                                     @endforeach
-
                                     @if($loop->last)
                                     @else
                                         <hr>
