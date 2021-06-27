@@ -112,7 +112,6 @@
                                     @if($loop->last)
                                         <div></div>
                                     @endif
-
                                     @foreach($student->collages->grades as $grade)
                                         @if($subjectMobility->grade === $grade->grade)
                                             @foreach($ourGrades as $ourGrade)
