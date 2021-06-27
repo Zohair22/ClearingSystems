@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="float-left mb-3">
                     <a href="{{ route('addSubjects',$student->id) }}" class="btn btn-sm font-weight-bold btn-primary">
-                        Add New Mobility
+                        Add New Subject for student mobility
                     </a>
                 </div>
             </div>

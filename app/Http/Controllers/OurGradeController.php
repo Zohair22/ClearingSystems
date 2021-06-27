@@ -64,7 +64,7 @@ class OurGradeController extends Controller
     public function update(Request $request,$id): RedirectResponse
     {
         $this->ourGradeRepository->update($id,$request);
-        return back()->with('message','The Grades Updated successfully');
+        return redirect()->route('OurGrade')->with('message','The Grades Updated successfully');
     }
 
 }
