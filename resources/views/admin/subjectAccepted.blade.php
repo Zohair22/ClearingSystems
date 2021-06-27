@@ -8,7 +8,10 @@
         </div>
         <div class="text-lg w-70 ml-5">
             <hr class="my-4">
-            The committee decided after examining the detailed clearing of the student <strong style="font-family: 'Roboto Mono', monospace;">{{ $student->name }},</strong> who was transferred from the <strong style="font-family: 'Roboto Mono', monospace;">College {{ $student->collages->collage  }}</strong>
+            The committee decided after examining the detailed clearing of the student
+            <strong style="font-family: 'Roboto Mono', monospace;">{{ $student->name }},</strong>
+            who was transferred from the
+            <strong style="font-family: 'Roboto Mono', monospace;">College {{ $student->collages->collage }}</strong>
             <hr class="my-2">
             The equivalency of a total of
             <strong>
