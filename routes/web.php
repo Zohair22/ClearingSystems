@@ -70,7 +70,6 @@ Route::middleware('teacher')->group( function () {
     Route::get('Grading/collage/grade/{id}', [GradingSystemController::class,'edit'])->name('editCollageGrade');
     Route::patch('Grading/collage/grade/{id}/update', [GradingSystemController::class,'update'])->name('updateCollageGrade');
 
-
     Route::get('ourGrades/', [OurGradeController::class,'index'])->name('OurGrade');
     Route::post('ourGrade/store', [OurGradeController::class,'store'])->name('addGrade');
     Route::get('ourGrade/{id}/edit', [OurGradeController::class,'edit'])->name('editGrade');
