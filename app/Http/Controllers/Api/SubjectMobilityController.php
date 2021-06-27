@@ -46,18 +46,6 @@ class SubjectMobilityController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param $id
-     * @return SubjectMobilityResource
-     */
-    public function update(Request $request, $id): SubjectMobilityResource
-    {
-        return new SubjectMobilityResource($this->subjectMobilityRepository->update($id,$request));
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param $id

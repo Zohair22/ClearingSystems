@@ -49,21 +49,6 @@ class SubjectMobilityController extends Controller
         return view('teacher.student.studentMobility',$this->subjectMobilityRepository->show($id));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  $id
-     * @return RedirectResponse
-     */
-    public function update($id ,Request $request): RedirectResponse
-    {
-        $this->subjectMobilityRepository->update($id,$request);
-        return back()->with('message','the Mobility Added successfully');
-    }
-
-
     /**
      * Remove the specified resource from storage.
      *

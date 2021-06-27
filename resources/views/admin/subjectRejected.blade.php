@@ -19,12 +19,13 @@
     <hr class="my-2">
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <table class="table table-bordered border-2 border-success table-striped table-success mt-3">
             <thead>
             <tr class="text-center">
                 <th colspan="4" class="align-middle">Student Subject</th>
                 <th colspan="4" class="align-middle">Collage Subject</th>
+                <th class="align-middle">Refuse reason</th>
             </tr>
             <tr class="text-center">
                 <th scope="col" class="align-middle">Student Subject</th>
@@ -35,6 +36,7 @@
                 <th scope="col" class="align-middle">Credit Hour</th>
                 <th scope="col" class="align-middle">Our Grade</th>
                 <th scope="col" class="align-middle">Percentage</th>
+                <th scope="col" class="align-middle">Reason Why!</th>
             </tr>
             </thead>
             <tbody>
@@ -158,6 +160,11 @@
                                         <hr>
                                     @endif
                                 @endforeach
+                            </td>
+                            <td class="align-middle p-4">
+                                    <div class="">
+                                        <div class="font-weight-bold text-md">{{ $studentMobility->reason }}</div>
+                                    </div>
                             </td>
                         </tr>
                     @endif

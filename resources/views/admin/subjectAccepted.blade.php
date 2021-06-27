@@ -18,7 +18,7 @@
             from the courses that the student has previously studied successfully in the entity from which he is transferred, and their data are as follows:-
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <table class="table table-bordered border-2 border-success table-striped table-success mt-3">
             <thead>
             <tr class="text-center">

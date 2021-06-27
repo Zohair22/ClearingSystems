@@ -9,7 +9,6 @@ use App\Models\Mobility;
 use App\Models\OurGrade;
 use App\Models\OurSubject;
 use App\Models\Student;
-use App\Models\Subject;
 use App\Models\SubjectMobility;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -133,44 +132,6 @@ class SubjectMobilityRepository
         $student = Student::findOrFail($id);
         $ourGrades = OurGrade::all();
         return compact('student','ourGrades');
-    }
-
-    /**
-     * @param $id
-     * @param Request $request
-     */
-    public function update($id, Request $request)
-    {
-        $data = $request->all();
-
-        $mobility = Mobility::findOrFail($id);
-
-        $data['ours_id'] = $mobility->ours_id;
-        $data['doctor'] = $mobility->doctor;
-
-        $mobility_id = Mobility::create([
-            "ours_id" => $mobility->ours_id,
-            "doctor" => $mobility->doctor,
-            "teacher" => $data["teacher"],
-        ])->id;
-
-        $insert = array();
-
-        foreach ($data['sub_id'] as $key => $sub_id) {
-            $insert[$key]['sub_id'] = $sub_id;
-        }
-        foreach ($data['grade'] as $key => $grade) {
-            $insert[$key]['grade'] = $grade;
-            $insert[$key]['mobility_id'] = $mobility_id;
-        }
-
-        foreach ($insert as $ins){
-            SubjectMobility::create([
-                'grade' => $ins['grade'],
-                'sub_id' => $ins['sub_id'],
-                'mobility_id' => $ins['mobility_id'],
-            ]);
-        }
     }
 
     /**

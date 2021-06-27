@@ -38,6 +38,7 @@ class MobilityController extends Controller
         $data = request()->validate([
             'acceptable' => ['int'],
             'admin' => ['int'],
+            'reason' => '',
         ]);
 
         $this->mobilityRepository->disapprove($id,$data);

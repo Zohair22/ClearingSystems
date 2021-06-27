@@ -16,7 +16,7 @@ class CreateMobilitiesTable extends Migration
         Schema::create('mobilities', function (Blueprint $table) {
             $table->id();
             $table->boolean('acceptable')->nullable();
-            $table->boolean('reason')->nullable();
+            $table->string('reason')->nullable();
             $table->foreignId('confirm_id')->constrained('confirmations')->cascadeOnDelete();
             $table->foreignId('ours_id')->constrained('our_subjects')->cascadeOnDelete();
             $table->foreignId('admin')->nullable()->constrained('users')->cascadeOnDelete();

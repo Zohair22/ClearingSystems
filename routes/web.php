@@ -76,6 +76,5 @@ Route::middleware('teacher')->group( function () {
 
     Route::get('collage/subject/{id}', [SubjectMobilityController::class,'all'])->name('addSubjects');
     Route::post('student/mobility/store', [SubjectMobilityController::class,'store'])->name('addStudentSubjects');
-    Route::post('student/addMobility/{id}', [SubjectMobilityController::class,'update'])->name('addStudentMobility');
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class,'destroy'])->name('deleteStudentMobility');
 });
