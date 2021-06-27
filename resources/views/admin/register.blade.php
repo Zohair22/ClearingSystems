@@ -116,3 +116,8 @@
         </div>
     </div>
 @endsection
+<script>
+    ajx({
+        url: '{{ route('addNewUser') }}'
+    })
+</script>
