@@ -47,7 +47,7 @@ class SubjectMobilityRepository
         ]);
         $data['stu_id'] = request('stu_id');
         $student = Student::findOrFail(request('stu_id'));
-        $confirmation = Confirmation::find($student->confirmation->id);
+        $confirmation = Confirmation::findOrFail($student->confirmation->id);
         $subMobs = SubjectMobility::where('sub_id',$data['sub_id'])->get();
         $grades = GradeSystem::where('grade',$data['grade'])->get();
 
@@ -80,7 +80,7 @@ class SubjectMobilityRepository
         if (SubjectMobility::where('sub_id',$data['sub_id'])->get()->count() >= 1)
         {
             foreach ($subMobs as $subMob){
-                $Mob = Mobility::find($subMob->mobility_id);
+                $Mob = Mobility::findOrFail($subMob->mobility_id);
                 if ($Mob->ours_id == $data['ours_id']) {
                     foreach ($grades as $grade) {
                         if($grade->from < 60) {
