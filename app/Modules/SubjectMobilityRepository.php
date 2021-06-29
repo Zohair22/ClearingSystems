@@ -5,6 +5,7 @@ namespace App\Modules;
 
 
 use App\Models\Confirmation;
+use App\Models\GradeSystem;
 use App\Models\Mobility;
 use App\Models\OurGrade;
 use App\Models\OurSubject;
@@ -45,6 +46,11 @@ class SubjectMobilityRepository
             'confirm_id' => '',
             'grade' => 'required',
         ]);
+        $data['stu_id'] = request('stu_id');
+        $student = Student::findOrFail(request('stu_id'));
+        $confirmation = Confirmation::find($student->confirmation->id);
+        $subMobs = SubjectMobility::where('sub_id',$data['sub_id'])->get();
+        $grades = GradeSystem::where('grade',$data['grade'])->get();
 
         $stu_id = $data['stu_id'];
         $sub_id = $data['sub_id'];
@@ -56,8 +62,99 @@ class SubjectMobilityRepository
             }) ,
         ]);
 
-        $data['stu_id'] = request('stu_id');
-        $student = Student::findOrFail(request('stu_id'));
+        if (isset($student->confirmation))
+        {
+            $confirmation->update([
+                'admin'=>1,
+                'confirmed'=>0,
+                'stu_id'=>$student->id
+            ]);
+            $confirm_id = $student->confirmation->id;
+        }else{
+            $confirm_id = Confirmation::create([
+                'admin'=>1,
+                'confirmed'=>0,
+                'stu_id'=>$data['stu_id']
+            ])->id;
+        }
+
+        if (SubjectMobility::where('sub_id',$data['sub_id'])->get()->count() >= 1)
+        {
+            foreach ($subMobs as $subMob){
+                $Mob = Mobility::find($subMob->mobility_id);
+                if ($Mob->ours_id == $data['ours_id']) {
+                    foreach ($grades as $grade) {
+                        if($grade->from < 60) {
+                            $id = Mobility::create([
+                                'ours_id' => $data['ours_id'],
+                                'confirm_id' => $confirm_id,
+                                'acceptable' => 0,
+                                'admin' => $Mob->admin,
+                                'reason' => 'Grade less than 60% it mean ur failed in this subject',
+                                'teacher' => $data['teacher'],
+                                'doctor' => $data['doctor'],
+                            ])->id;
+                        }else{
+                            $id = Mobility::create([
+                                'ours_id' => $data['ours_id'],
+                                'confirm_id' => $confirm_id,
+                                'acceptable' => $Mob->acceptable,
+                                'admin' => $Mob->admin,
+                                'reason' => $Mob->reason,
+                                'teacher' => $data['teacher'],
+                                'doctor' => $data['doctor'],
+                            ])->id;
+                        }
+                        break;
+                    }
+                }else{
+                    foreach ($grades as $grade) {
+                        if($grade->from < 60) {
+                            $id = Mobility::create([
+                                'ours_id' => $data['ours_id'],
+                                'confirm_id' => $confirm_id,
+                                'acceptable' => 0,
+                                'admin' => $Mob->admin,
+                                'reason' => 'Grade less than 60% it mean ur failed in this subject',
+                                'teacher' => $data['teacher'],
+                                'doctor' => $data['doctor'],
+                            ])->id;
+                        }else{
+                            $id = Mobility::create([
+                                'ours_id'=>$data['ours_id'],
+                                'confirm_id'=>$confirm_id,
+                                'teacher'=>$data['teacher'],
+                                'doctor'=>$data['doctor'],
+                            ])->id;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }else{
+            foreach ($grades as $grade) {
+                if($grade->from < 60) {
+                    $id = Mobility::create([
+                        'ours_id' => $data['ours_id'],
+                        'confirm_id' => $confirm_id,
+                        'acceptable' => 0,
+                        'admin' => 1,
+                        'reason' => 'Grade less than 60% it mean ur failed in this subject',
+                        'teacher' => $data['teacher'],
+                        'doctor' => $data['doctor'],
+                    ])->id;
+                }else{
+                    $id = Mobility::create([
+                        'ours_id'=>$data['ours_id'],
+                        'confirm_id'=>$confirm_id,
+                        'teacher'=>$data['teacher'],
+                        'doctor'=>$data['doctor'],
+                    ])->id;
+                }
+                break;
+            }
+        }
 
         $inserts = array();
         foreach ($data['sub_id'] as  $key =>$sub_id)
@@ -69,50 +166,6 @@ class SubjectMobilityRepository
             $inserts[$key]['grade'] = $grade;
             $inserts[$key]['stu_id'] = $data['stu_id'];
         }
-
-        if (isset($student->confirmation))
-        {
-            $confirmation = find($student->confirmation->id);
-            $confirm_id = $confirmation->update([
-                'admin'=>1,
-                'confirmed'=>0,
-                'stu_id'=>$student->id
-            ])->id;
-        }else{
-            $confirm_id = Confirmation::create([
-                'admin'=>1,
-                'confirmed'=>0,
-                'stu_id'=>$data['stu_id']
-            ])->id;
-        }
-
-        if (SubjectMobility::where('sub_id',$data['sub_id'])->get()->count() >= 1)
-        {
-            $subMobs = SubjectMobility::where('sub_id',$data['sub_id'])->get();
-            foreach ($subMobs as $subMob){
-                $Mob = Mobility::find($subMob->mobility_id);
-                if ($Mob->ours_id === $data['ours_id']) {
-                    $id = Mobility::create([
-                        'ours_id' => $data['ours_id'],
-                        'confirm_id' => $confirm_id,
-                        'acceptable' => $Mob->acceptable,
-                        'admin' => $Mob->admin,
-                        'reason' => $Mob->reason,
-                        'teacher' => $data['teacher'],
-                        'doctor' => $data['doctor'],
-                    ])->id;
-                }
-                break;
-            }
-        }else{
-            $id = Mobility::create([
-                'ours_id'=>$data['ours_id'],
-                'confirm_id'=>$confirm_id,
-                'teacher'=>$data['teacher'],
-                'doctor'=>$data['doctor'],
-            ])->id;
-        }
-
         foreach ($inserts as $insert)
         {
             $insert['mobility_id'] = $id;
