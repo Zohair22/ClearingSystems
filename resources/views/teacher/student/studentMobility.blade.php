@@ -222,7 +222,8 @@
                                 <form action="{{ route('deleteStudentMobility',$mobility->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Remove Mobility</button>
+                                    @if($student->confirmation->confirmed === 1 ) <p class="text-info">the mobility had been confirmed</p> @endif
+                                    <button type="submit" class="btn btn-sm btn-danger" @if($student->confirmation->confirmed === 1 ) disabled @endif >Remove Mobility</button>
                                 </form>
                             </td>
                         @elseif(auth()->user()->group_by === '1')

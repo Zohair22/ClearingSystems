@@ -16,18 +16,6 @@ use Illuminate\Validation\Rule;
 
 class SubjectMobilityRepository
 {
-    /**
-     * @var SubjectMobility
-     */
-    private SubjectMobility $subjectMobility;
-
-    /**
-     * SubjectMobilityRepository constructor.
-     */
-    public function __construct()
-    {
-        $this->subjectMobility = new SubjectMobility();
-    }
 
     /**
      * @param $id
@@ -67,6 +55,7 @@ class SubjectMobilityRepository
                     ->where('stu_id',$stu_id);
             }) ,
         ]);
+
         $data['stu_id'] = request('stu_id');
         $student = Student::findOrFail(request('stu_id'));
 
@@ -83,10 +72,16 @@ class SubjectMobilityRepository
 
         if (isset($student->confirmation))
         {
-            $confirm_id = $student->confirmation->id;
+            $confirmation = find($student->confirmation->id);
+            $confirm_id = $confirmation->update([
+                'admin'=>1,
+                'confirmed'=>0,
+                'stu_id'=>$student->id
+            ])->id;
         }else{
             $confirm_id = Confirmation::create([
                 'admin'=>1,
+                'confirmed'=>0,
                 'stu_id'=>$data['stu_id']
             ])->id;
         }
@@ -96,15 +91,17 @@ class SubjectMobilityRepository
             $subMobs = SubjectMobility::where('sub_id',$data['sub_id'])->get();
             foreach ($subMobs as $subMob){
                 $Mob = Mobility::find($subMob->mobility_id);
-                $id = Mobility::create([
-                    'ours_id'=>$data['ours_id'],
-                    'confirm_id'=>$confirm_id,
-                    'acceptable'=>$Mob->acceptable,
-                    'admin'=>$Mob->admin,
-                    'reason'=>$Mob->reason,
-                    'teacher'=>$data['teacher'],
-                    'doctor'=>$data['doctor'],
-                ])->id;
+                if ($Mob->ours_id === $data['ours_id']) {
+                    $id = Mobility::create([
+                        'ours_id' => $data['ours_id'],
+                        'confirm_id' => $confirm_id,
+                        'acceptable' => $Mob->acceptable,
+                        'admin' => $Mob->admin,
+                        'reason' => $Mob->reason,
+                        'teacher' => $data['teacher'],
+                        'doctor' => $data['doctor'],
+                    ])->id;
+                }
                 break;
             }
         }else{

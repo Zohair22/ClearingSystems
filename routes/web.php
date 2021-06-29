@@ -40,21 +40,21 @@ Route::middleware(['auth'])->group( function (){
 
     //////// Teacher /////////
 Route::middleware('teacher')->group( function () {
-/// //    OUR SUBJECTS
+/////    OUR SUBJECTS
     Route::get('ourSubject', [OurSubjectController::class,'all'])->name('showOurSubjects');
     Route::post('ourSubject/store', [OurSubjectController::class,'store'])->name('addNewOurSubject');
     Route::get('ourSubject/{id}/edit/', [OurSubjectController::class,'edit'])->name('editOurSubject');
     Route::patch('ourSubject/{id}/update', [OurSubjectController::class,'update'])->name('updateOurSubject');
     Route::delete('ourSubject/{id}/delete', [OurSubjectController::class,'destroy'])->name('deleteOurSubject');
 
-//    Subjects
+//  Subjects
     Route::post('student/subjects/store', [SubjectController::class,'store'])->name('addNewSubject');
     Route::get('subject/{id}/edit/', [SubjectController::class,'edit'])->name('editSubject');
     Route::patch('subject/{id}/update', [SubjectController::class,'update'])->name('updateSubject');
     Route::delete('subject/{id}/delete', [SubjectController::class,'destroy'])->name('deleteSubject');
 
 
-//Collages
+//  Collages
     Route::post('collage/store', [CollageController::class,'store'])->name('addNewCollage');
 
 ///// Students
