@@ -124,5 +124,6 @@
     <orderEntry type="library" name="vue" level="application" />
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
     <orderEntry type="library" name="pusher" level="application" />
+    <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
   </component>
 </module>

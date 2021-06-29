@@ -15,7 +15,7 @@
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Student Collage:</strong> {{ $student->collages->collage }}</h1>
                 <hr class="my-1">
-                <h1 class="display-7"><strong class="ml-3 mr-4">Student Level:</strong> {{ $student->level }} --- <strong>Semester: </strong>{{ $student->semester }}</h1>
+                <h1 class="display-7"><strong class="ml-3 mr-4">Student Level:</strong> {{ $student->level }}</h1>
                 <hr class="my-1">
             </div>
             <div class="col-6">
@@ -29,6 +29,8 @@
                 <hr class="my-1">
                 <h1 class="display-7"><strong class="ml-3 mr-4">Collage:</strong> IT</h1>
                 <hr class="my-1">
+                <h1 class="display-7"><strong class="ml-3 mr-4">Semester: </strong>{{ $student->semester }}</h1>
+                <hr class="my-1">
             </div>
         </div>
     @endif
@@ -40,6 +42,9 @@
                     <a href="{{ route('addSubjects',$student->id) }}" class="btn btn-sm font-weight-bold btn-primary">
                         Add New Subject for student mobility
                     </a>
+                </div>
+                <div class="float-right mb-3">
+                    @if($student->confirmation->confirmed === 1 ) <p class="text-blue-800 font-weight-bold text-lg">The Mobility has been Confirmed</p> @endif
                 </div>
             </div>
         @elseif(auth()->user()->group_by === '1')
@@ -222,7 +227,6 @@
                                 <form action="{{ route('deleteStudentMobility',$mobility->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    @if($student->confirmation->confirmed === 1 ) <p class="text-info">the mobility had been confirmed</p> @endif
                                     <button type="submit" class="btn btn-sm btn-danger" @if($student->confirmation->confirmed === 1 ) disabled @endif >Remove Mobility</button>
                                 </form>
                             </td>
@@ -238,51 +242,16 @@
                                             </form>
                                         </div>
                                         <div class=" mt-5 ">
-                                            <form action="{{ route('disapproveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button class="btn btn-danger btn-sm text-md p-1">DisApprove</button>
-                                            </form>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-danger btn-sm text-md p-1" data-toggle="modal" data-target="#exampleModal" @if($student->confirmation->confirmed === 1) disabled @endif >
+                                                DisApprove
+                                            </button>
                                         </div>
                                     @elseif($mobility->acceptable === 1)
                                     <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-danger btn-sm text-md p-1" data-toggle="modal" data-target="#exampleModal" @if($student->confirmation->confirmed === 1) disabled @endif >
                                             DisApprove
                                         </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Reason Why?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('disapproveMobility',$mobility->id) }}" class="d-inline m-0 p-0 ml-3" method="post">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <div class="form-group row">
-                                                                <label for="reason" class="col-md-4 col-form-label text-lg">{{ __('Reason Why?') }}</label>
-
-                                                                <div class="col-md-6">
-                                                                    <textarea id="reason" class="form-control @error('reason') is-invalid @enderror" name="reason" autofocus>{{ old('reason') }}</textarea>
-
-                                                                    @error('reason')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <button class="btn btn-danger text-xl px-5">Refused</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @elseif($mobility->acceptable === 0)
                                         <form action="{{ route('approveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">
                                             @csrf
@@ -300,3 +269,38 @@
         </table>
     </div>
 @endsection
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reason Why?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('disapproveMobility',$mobility->id) }}" class="d-inline m-0 p-0 ml-3" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <div class="form-group row">
+                        <label for="reason" class="col-md-4 col-form-label text-lg">{{ __('Reason Why?') }}</label>
+
+                        <div class="col-md-6">
+                            <textarea id="reason" class="form-control @error('reason') is-invalid @enderror" name="reason" autofocus>{{ old('reason') }}</textarea>
+
+                            @error('reason')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <button class="btn btn-danger text-xl px-5">Refused</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

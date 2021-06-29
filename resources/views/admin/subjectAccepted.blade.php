@@ -8,6 +8,8 @@
         </div>
         <div class="text-lg w-70 ml-5">
             <hr class="my-4">
+
+            <div class="text-center mb-4"><h1 class="display-6 text-success font-weight-bold">The Subjects is Accepted</h1></div>
             The committee decided after examining the detailed clearing of the student
             <strong style="font-family: 'Roboto Mono', monospace;">{{ $student->name }},</strong>
             who was transferred from the

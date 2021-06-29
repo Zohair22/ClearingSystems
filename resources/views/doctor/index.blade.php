@@ -7,7 +7,7 @@
         <tr class="text-center">
             <th colspan="4" class="align-middle">Student Subject</th>
             <th colspan="4" class="align-middle">Collage Subject</th>
-            <th colspan="2" class="align-middle">Status</th>
+            <th class="align-middle">Status</th>
         </tr>
         <tr class="text-center">
             <th scope="col" class="align-middle">Subject Description</th>
@@ -18,7 +18,6 @@
             <th scope="col" class="align-middle">Credit Hour</th>
             <th scope="col" class="align-middle">Our Grade</th>
             <th scope="col" class="align-middle">Percentage</th>
-            <th scope="col" class="align-middle">Status</th>
             <th scope="col" class="align-middle"  style="min-width: 8rem;max-width: 8rem">######</th>
         </tr>
         </thead>
@@ -144,15 +143,7 @@
                         @endforeach
                     </td>
 
-                    <td class="align-middle">
-                        @if($mobility->acceptable === null)
-                            <div class="text-secondary text-md font-weight-bold">In Progress<br><span class="text-xs">{{ $mobility->updated_at->diffForHumans() }}</span></div>
-                        @elseif($mobility->acceptable === 1)
-                            <div class="text-primary text-md font-weight-bold">Accepted<br><span class="text-xs">{{ $mobility->updated_at->diffForHumans() }}</span></div>
-                        @elseif($mobility->acceptable === 0)
-                            <div class="text-danger text-md font-weight-bold">Refused<br><span class="text-xs">{{ $mobility->updated_at->diffForHumans() }}</span></div>
-                        @endif
-                    </td>
+
                     <td class="align-middle p-0">
                         <div class="d-inline m-0 p-0">
                             <form action="{{ route('approveMobility',$mobility->id) }}" class="d-inline m-0 p-0" method="post">

@@ -8,15 +8,16 @@
         </div>
         <div class="text-lg w-70 ml-5">
             <hr class="my-4">
+            <div class="text-center mb-4"><h1 class="display-6 text-danger font-weight-bold">The Subjects is Rejected</h1></div>
             The committee decided after examining the detailed clearing of the student <strong>{{ $student->name }},</strong> who was transferred from the <strong>College {{ $student->collages->collage  }}</strong>
-            <br class="mt-1">
+            <hr class="my-2">
             The equivalency of a total of
             <strong>
                 {{ $student->hours($student->confirmation->id) }}
                 credit hours
             </strong>
-            from the courses that the student has previously studied successfully in the entity from which he is transferred, and <span class="font-weight-bold">"The Subject is Rejected"</span> is :-
-    <hr class="my-2">
+            from the courses that the student has previously studied successfully in the entity from which he is transferred, and <span class="font-weight-bold">"The Subjects is Rejected"</span> is :-
+{{--            <hr class="my-2">--}}
         </div>
     </div>
     <div class="container-fluid">
@@ -161,10 +162,10 @@
                                     @endif
                                 @endforeach
                             </td>
-                            <td class="align-middle p-4">
-                                    <div class="">
-                                        <div class="font-weight-bold text-md">{{ $studentMobility->reason }}</div>
-                                    </div>
+                            <td class="align-middle p-4" style="max-width: 400px;">
+                                <div class="">
+                                    <div class="font-weight-bold text-md">{{ $studentMobility->reason }}</div>
+                                </div>
                             </td>
                         </tr>
                     @endif
