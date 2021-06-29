@@ -3,7 +3,6 @@
 
 namespace App\Modules;
 
-
 use App\Models\Confirmation;
 use App\Models\GradeSystem;
 use App\Models\Mobility;
