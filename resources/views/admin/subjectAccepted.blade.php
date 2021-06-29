@@ -166,9 +166,11 @@
             </tbody>
         </table>
     </div>
-    <div class="container row text-center mt-3 mb-40 p-2">
+    <div class="container text-center mt-3 mb-40 p-2">
         <div class="font-weight-bold text-lg col-4">Clearing committee </div>
-        <div class="font-weight-bold text-lg col-4">Dean of the College</div>
-        <div class="font-weight-bold text-lg col-4">University's president</div>
+        <div class="container row text-center mt-3 mb-40 p-2">
+            <div class="font-weight-bold text-lg col-4">Dean of the College</div>
+            <div class="font-weight-bold text-lg col-4">University's president</div>
+        </div>
     </div>
 @endsection
