@@ -15,27 +15,27 @@ use Illuminate\Support\Facades\Route;
 //
 Auth::routes();
 //
-Route::middleware('auth:api')->group( function () {
+//Route::middleware('auth:api')->group( function () {
     Route::get('/', [AdminController::class, 'index'])->name('home');
-});
+//});
 
 Route::post('/login/done', [AdminController::class, 'login'])->name('login');
 
 //////Admin
-Route::middleware('admin:api')->group( function () {
+//Route::middleware('admin:api')->group( function () {
     Route::get('new/user', [AdminController::class, 'create'])->name('addNewUserForm');
     Route::post('new/user/store', [AdminController::class, 'store'])->name('addNewUser');
     Route::patch('mobility/confirmation/{id}', [ConfirmationController::class, 'update'])->name('confirmation');
     Route::get('student/{id}/subjectAccepted', [ConfirmationController::class, 'subjectAccepted'])->name('subjectAccepted');
     Route::get('student/{id}/subjectRejected', [ConfirmationController::class, 'subjectRejected'])->name('subjectRejected');
-});
+//});
 
 //////Doctor
-Route::middleware('doctor:api')->group( function () {
+//Route::middleware('doctor:api')->group( function () {
     Route::get('all/mobilities', [MobilityController::class, 'all'])->name('allMobilities');
-});
+//});
 
-Route::middleware('teacher:api')->group( function () {
+//Route::middleware('teacher:api')->group( function () {
 ////// Teacher
 /// //    OUR SUBJECTS
     Route::get('ourSubject', [OurSubjectController::class, 'all'])->name('showOurSubjects');
@@ -76,10 +76,10 @@ Route::middleware('teacher:api')->group( function () {
     Route::post('student/mobility/store', [SubjectMobilityController::class, 'store'])->name('addStudentSubjects');
     Route::post('student/addMobility/{id}', [SubjectMobilityController::class, 'update'])->name('addStudentMobility');
     Route::delete('student/mobility/{id}/delete', [SubjectMobilityController::class, 'destroy'])->name('deleteStudentMobility');
-});
-Route::middleware('auth:api')->group( function () {
+//});
+//Route::middleware('auth:api')->group( function () {
 /////Auth (doctor, Admin)
     Route::get('student/mobility/{id}', [SubjectMobilityController::class,'edit'])->name('studentMobility');
     Route::patch('student/subject/{id}/approve', [MobilityController::class, 'approve'])->name('approveMobility');
     Route::patch('student/subject/{id}/disapprove', [MobilityController::class, 'disapprove'])->name('disapproveMobility');
-});
+//});
